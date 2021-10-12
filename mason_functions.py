@@ -20,7 +20,7 @@ def is_two(x):
 is_two('2')
 
 
-# In[3]:
+# In[ ]:
 
 
 #2
@@ -99,7 +99,7 @@ def apply_discount(price, disc):
 apply_discount(24.99, .8)
 
 
-# In[4]:
+# In[ ]:
 
 
 #7
@@ -167,7 +167,7 @@ def remove_vowels(string):
 remove_vowels('Nnnnooooooooooo!!!!')
 
 
-# In[2]:
+# In[ ]:
 
 
 #10
@@ -213,7 +213,7 @@ if __name__ == '__main__':
     print(normalize_name('% Completed'))
 
 
-# In[1]:
+# In[ ]:
 
 
 #11
@@ -238,13 +238,13 @@ c = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 cumulative_sum(c)
 
 
-# In[2]:
+# In[ ]:
 
 
 #Mason's personal functions
 
 
-# In[3]:
+# In[ ]:
 
 
 #pull a number from a string with one number 
