@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 
 #1
@@ -20,7 +20,7 @@ def is_two(x):
 is_two('2')
 
 
-# In[ ]:
+# In[2]:
 
 
 #2
@@ -38,7 +38,7 @@ def is_vowel(x):
 is_vowel('A')
 
 
-# In[ ]:
+# In[3]:
 
 
 #3
@@ -55,7 +55,7 @@ def is_consonant(x):
 is_consonant('B')
 
 
-# In[ ]:
+# In[4]:
 
 
 #4
@@ -73,7 +73,7 @@ def capitalize_consonant_words(string):
 capitalize_consonant_words('success')
 
 
-# In[ ]:
+# In[5]:
 
 
 #5
@@ -87,7 +87,7 @@ def calculate_tip(percentage, bill):
 calculate_tip(.22, 18.24)
 
 
-# In[ ]:
+# In[6]:
 
 
 #6 
@@ -99,7 +99,7 @@ def apply_discount(price, disc):
 apply_discount(24.99, .8)
 
 
-# In[ ]:
+# In[7]:
 
 
 #7
@@ -121,7 +121,7 @@ def handle_commas(string):
 handle_commas('12,345,678.9')
 
 
-# In[ ]:
+# In[8]:
 
 
 #8
@@ -145,7 +145,7 @@ def get_letter_grade(x):
 get_letter_grade(69)
 
 
-# In[ ]:
+# In[9]:
 
 
 #9
@@ -164,7 +164,7 @@ def remove_vowels(string):
 remove_vowels('Nnnnooooooooooo!!!!')
 
 
-# In[ ]:
+# In[10]:
 
 
 #10
@@ -211,7 +211,7 @@ if __name__ == '__main__':
     print(normalize_name('1man'))
 
 
-# In[ ]:
+# In[11]:
 
 
 #Example code
@@ -235,8 +235,25 @@ c = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 cumulative_sum(c)
 
 
-# In[ ]:
+# In[12]:
 
 
+#Mason's personal functions
+#import mason_functions as mf
 
+
+# In[13]:
+
+
+#pull a number from a string with one number 
+def pull_a_number_from_a_string_with_one_number(string):
+    number = ''
+    for char in string:
+        if char.isdigit():
+            number += char
+    return int(number)
+pull_a_number_from_a_string_with_one_number('Yo! You have 38 unread messages!')
+#good to alias it as 'pn'
+#can copy and paste below after '#' marker:
+#from mason_functions import pull_a_number_from_a_string_with_one_number as pn
 
