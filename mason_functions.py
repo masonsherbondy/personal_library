@@ -34,7 +34,7 @@ def is_vowel(x):
     else:
         #return bool False if not
         return False
-   
+    
 is_vowel('A')
 
 
@@ -112,9 +112,6 @@ def handle_commas(string):
         #if the character is a number, add to the variable (string)
         if c.isdigit():
             c_handled += c
-        #if the character is a comma, add an underscore in its stead
-        elif c == ',':
-            c_handled += '_'
         #if the character is a decimal, add to the string
         elif c == '.':
             c_handled += '.'
@@ -174,9 +171,9 @@ remove_vowels('Nnnnooooooooooo!!!!')
 #normalize_name defines a single parameter, a string, and returns a string value
 def normalize_name(string):
     #python identifiers can not start with numbers. Loop through string until first character of string is not 
-    #a number
+    #a number. move numbers to the back
     while string[0].isalpha() == False:
-        string = string[1:]
+        string = string[1:] + string[0]
     #assign a variable to: the input string stripped of all leading or trailing white space, as well as with all
     #lowercased characters
     f_name = string.strip().lower() 
@@ -211,12 +208,12 @@ if __name__ == '__main__':
     print(normalize_name('First name'))
     print(normalize_name('Name'))
     print(normalize_name('% Completed'))
+    print(normalize_name('1man'))
 
 
 # In[ ]:
 
 
-#11
 #Example code
 #cumulative_sum([1, 1, 1]) returns [1, 2, 3]
 #cumulative_sum([1, 2, 3, 4]) returns [1, 3, 6, 10]
@@ -229,35 +226,13 @@ if __name__ == '__main__':
 
 #cumulative_sum defines a single parameter, a list, and returns a list
 def cumulative_sum(L):
-    #return a list of numbers that are each the sum of the number in the input list plus all of the numbers prior to
+    #return a list of numbers that are each the sum of a number in the input list plus all of the numbers prior to
     #this number in the index. use python's zero-indexing to format the individual sums for the return list. 
     #use a for loop to run through the index of the input list and generate sums for each item on the return list.
     return [sum(L[:n + 1]) for n in range(len(L))]
 
 c = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 cumulative_sum(c)
-
-
-# In[ ]:
-
-
-#Mason's personal functions
-
-
-# In[ ]:
-
-
-#pull a number from a string with one number 
-def pull_a_number_from_a_string_with_one_number(string):
-    number = ''
-    for char in string:
-        if char.isdigit():
-            number += char
-    return int(number)
-pull_a_number_from_a_string_with_one_number('Yo! You have 38 unread messages!')
-#good to alias it as 'pn'
-#can copy and paste below after '#' marker:
-#from mason_functions import pull_a_number_from_a_string_with_one_number as pn
 
 
 # In[ ]:
