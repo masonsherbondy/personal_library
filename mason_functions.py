@@ -320,3 +320,31 @@ if __name__ == '__main__':
     print(median([4, 8, 1, 2, 38]))
     print(median([1, 100, 2, 90]))
 
+
+# In[19]:
+
+
+#count some vowels m8
+def count_vowels(string):
+    count = 0
+    for x in string:
+        if is_vowel(x):
+            count += 1
+    return count
+
+count_vowels('Hadouken!')
+
+
+# In[22]:
+
+
+#count some consonants m9
+def count_consonants(string):
+    count = 0
+    for x in string:
+        if is_consonant(x):
+            count += 1
+    return count
+
+count_consonants('Shoryuken!')
+
