@@ -252,8 +252,71 @@ def pull_a_number_from_a_string_with_one_number(string):
         if char.isdigit():
             number += char
     return int(number)
+
 pull_a_number_from_a_string_with_one_number('Yo! You have 38 unread messages!')
 #good to alias it as 'pn'
 #can copy and paste below after '#' marker:
 #from mason_functions import pull_a_number_from_a_string_with_one_number as pn
+
+
+# In[14]:
+
+
+#get an average of one list (take one paramater and return a float)
+def average(n):
+    return sum(n) / len(n)
+
+a = [1, 2, 3, 4,]
+average(a)
+
+
+# In[15]:
+
+
+#move the first item in an sequence to the last position of a sequence (take one parameter and return a list)
+def first_to_last(s):
+    #assign a variable to the first item of the sequence
+    x = s[0]
+    #assign a variable to the sequence starting with the second item and add the first item to the end of the sequence
+    s = s[1:] + [x]
+    #return the new sequence with the first item at the end and the second item in front
+    return s
+
+first_to_last([1, 2, 3, 4, 5,])
+
+
+# In[16]:
+
+
+#get the median of a list of numbers (take one parameter and return a float)
+def median(x):
+    #sort the list so function code can slice into an appropriate data set
+    x.sort()
+    #assign a variable to the total number of items in the list (how many data points do we have?)
+    l = len(x)
+    #assign a variable to half of the total of numbers(data points) in the list. If the list is even or odd, the
+    #value of this variable an integer to represent how many times the value two goes into the total of numbers,
+    #i.e., 9 // 2 = 4 and 8 // 2 = 4
+    n = l // 2
+    #introduce an 'if' conditional to determine if the total number of datapoints is odd
+    if l % 2 == 1:
+        #if it is, return the middle datapoint
+        return x[n]
+    #otherwise, just return the value in the middle of the two middlest points
+    return (x[n - 1] + x[n]) / 2 
+
+#condensed
+#def median(x):
+    #x.sort()
+    #l = len(x)
+    #n = l // 2
+    #if l % 2 == 1:
+        #return x[n]
+    #return (x[n - 1] + x[n]) / 2
+
+if __name__ == '__main__':
+    print(median([1, 2, 70, 80, 90, 100]))
+    print(median([1, 2, 3, 4, 5]))
+    print(median([4, 8, 1, 2, 38]))
+    print(median([1, 100, 2, 90]))
 
