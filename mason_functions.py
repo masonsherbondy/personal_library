@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[ ]:
 
 
 #1
@@ -20,7 +20,7 @@ def is_two(x):
 is_two('2')
 
 
-# In[2]:
+# In[ ]:
 
 
 #2
@@ -38,7 +38,7 @@ def is_vowel(x):
 is_vowel('A')
 
 
-# In[3]:
+# In[ ]:
 
 
 #3
@@ -55,7 +55,7 @@ def is_consonant(x):
 is_consonant('B')
 
 
-# In[4]:
+# In[ ]:
 
 
 #4
@@ -73,7 +73,7 @@ def capitalize_consonant_words(string):
 capitalize_consonant_words('success')
 
 
-# In[5]:
+# In[ ]:
 
 
 #5
@@ -87,7 +87,7 @@ def calculate_tip(percentage, bill):
 calculate_tip(.22, 18.24)
 
 
-# In[6]:
+# In[ ]:
 
 
 #6 
@@ -99,7 +99,7 @@ def apply_discount(price, disc):
 apply_discount(24.99, .8)
 
 
-# In[7]:
+# In[ ]:
 
 
 #7
@@ -121,7 +121,7 @@ def handle_commas(string):
 handle_commas('12,345,678.9')
 
 
-# In[8]:
+# In[ ]:
 
 
 #8
@@ -145,7 +145,7 @@ def get_letter_grade(x):
 get_letter_grade(69)
 
 
-# In[9]:
+# In[ ]:
 
 
 #9
@@ -164,7 +164,7 @@ def remove_vowels(string):
 remove_vowels('Nnnnooooooooooo!!!!')
 
 
-# In[10]:
+# In[ ]:
 
 
 #10
@@ -211,7 +211,7 @@ if __name__ == '__main__':
     print(normalize_name('1man'))
 
 
-# In[11]:
+# In[ ]:
 
 
 #Example code
@@ -235,14 +235,14 @@ c = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 cumulative_sum(c)
 
 
-# In[12]:
+# In[ ]:
 
 
 #Mason's personal functions
 #import mason_functions as mf
 
 
-# In[13]:
+# In[ ]:
 
 
 #pull a number from a string with one number 
@@ -259,7 +259,7 @@ pull_a_number_from_a_string_with_one_number('Yo! You have 38 unread messages!')
 #from mason_functions import pull_a_number_from_a_string_with_one_number as pn
 
 
-# In[14]:
+# In[ ]:
 
 
 #get an average of one list (take one paramater and return a float)
@@ -270,7 +270,7 @@ a = [1, 2, 3, 4,]
 average(a)
 
 
-# In[15]:
+# In[ ]:
 
 
 #move the first item in an sequence to the last position of a sequence (take one parameter and return a list)
@@ -285,7 +285,7 @@ def first_to_last(s):
 first_to_last([1, 2, 3, 4, 5,])
 
 
-# In[16]:
+# In[ ]:
 
 
 #get the median of a list of numbers (take one parameter and return a float)
@@ -321,7 +321,7 @@ if __name__ == '__main__':
     print(median([1, 100, 2, 90]))
 
 
-# In[19]:
+# In[ ]:
 
 
 #count some vowels m8
@@ -335,7 +335,7 @@ def count_vowels(string):
 count_vowels('Hadouken!')
 
 
-# In[22]:
+# In[ ]:
 
 
 #count some consonants m9
