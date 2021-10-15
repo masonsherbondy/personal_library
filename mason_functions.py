@@ -172,7 +172,7 @@ remove_vowels('Nnnnooooooooooo!!!!')
 def normalize_name(string):
     #python identifiers can not start with numbers. Loop through string until first character of string is not 
     #a number. move numbers to the back
-    while string[0].isalpha() == False:
+    while string[0].isdigit():
         string = string[1:] + string[0]
     #assign a variable to: the input string stripped of all leading or trailing white space, as well as with all
     #lowercased characters
