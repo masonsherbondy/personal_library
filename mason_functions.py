@@ -348,3 +348,45 @@ def count_consonants(string):
 
 count_consonants('Shoryuken!')
 
+
+# In[ ]:
+
+
+#count letters in a word
+def count_characters(string):
+    count = 0
+    for x in string:
+        if x.isalnum() or x == ' ':
+            count += 1
+    return count
+
+count_characters('Tatsumaki Senpukyaku!')
+
+
+# In[ ]:
+
+
+#Is it true, Brutus? Ay tu?
+def count_Trues(list):
+    count = 0
+    for bool in list:
+        if bool == True:
+            count += 1
+    return count
+
+count_Trues([True, False, True, False, True, False, True])
+
+
+# In[ ]:
+
+
+#convert date to integer
+def convert_YYYY_mm_dd(string):
+    date = ''
+    for n in string:
+        if n.isdigit():
+            date += n
+    return int(date)
+
+convert_YYYY_mm_dd('1980-04-24')
+
