@@ -376,17 +376,3 @@ def count_Trues(list):
 
 count_Trues([True, False, True, False, True, False, True])
 
-
-# In[ ]:
-
-
-#convert date to integer
-def convert_YYYY_mm_dd(string):
-    date = ''
-    for n in string:
-        if n.isdigit():
-            date += n
-    return int(date)
-
-convert_YYYY_mm_dd('1980-04-24')
-
