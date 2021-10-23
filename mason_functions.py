@@ -246,17 +246,17 @@ cumulative_sum(c)
 
 
 #pull a number from a string with one number 
-def pull_a_number_from_a_string_with_one_number(string):
+def pull_an_integer_from_a_string_with_one_integer(string):
     number = ''
     for char in string:
         if char.isdigit():
             number += char
     return int(number)
 
-pull_a_number_from_a_string_with_one_number('Yo! You have 38 unread messages!')
-#good to alias it as 'pn'
+pull_an_integer_from_a_string_with_one_integer('Yo! You have 38 unread messages!')
+#good to alias it as 'pin'
 #can copy and paste below after '#' marker:
-#from mason_functions import pull_a_number_from_a_string_with_one_number as pn
+#from mason_functions import pull_an_integer_from_a_string_with_one_integer as pin
 
 
 # In[ ]:
@@ -295,8 +295,8 @@ def median(x):
     #assign a variable to the total number of items in the list (how many data points do we have?)
     l = len(x)
     #assign a variable to half of the total of numbers(data points) in the list. If the list is even or odd, the
-    #value of this variable an integer to represent how many times the value two goes into the total of numbers,
-    #i.e., 9 // 2 = 4 and 8 // 2 = 4
+    #value of this variable is an integer that represents how many times the value two goes into the total of
+    #numbers, i.e., 9 // 2 = 4 and 8 // 2 = 4
     n = l // 2
     #introduce an 'if' conditional to determine if the total number of datapoints is odd
     if l % 2 == 1:
