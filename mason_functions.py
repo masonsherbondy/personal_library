@@ -153,9 +153,9 @@ get_letter_grade(69)
 def remove_vowels(string):
     #assign a variable to an empty string
     v_removed = ''
-    #start a loop to check if characters in input string are vowel-opposites
+    #start a loop to check if characters in input string are not vowels
     for l in string:
-        if is_consonant(l):
+        if not is_vowel(l):
             #only add vowel-opposite characters to the string variable
             v_removed += l
     #return the string variable with characters that are not vowels
@@ -219,7 +219,7 @@ if __name__ == '__main__':
 #cumulative_sum([1, 2, 3, 4]) returns [1, 3, 6, 10]
 
 #interpretation
-#if A = [1, 1, 1], then cumulative_sum(A) = [A[0], (A[0] + A[1]), (A[0] + A[1] + A[2])]
+#if A = [1, 1, 1], then cumulative_sum(A) = [(A[0]), (A[0] + A[1]), (A[0] + A[1] + A[2])]
 #cumulative_sum(A) = [sum(A[:1]), sum(A[:2]), sum(A[:3])]
 #cumulative_sum(A) = [sum(A[:0 + 1]), sum(A[:1 + 1]), sum(A[:2 + 1])]
 #range(len(A)) = range(0, 3) --> which is zero to two (0, 1, 2)--> which is the complete index for A
@@ -347,20 +347,6 @@ def count_consonants(string):
     return count
 
 count_consonants('Shoryuken!')
-
-
-# In[ ]:
-
-
-#count letters in a word
-def count_characters(string):
-    count = 0
-    for x in string:
-        if x.isalnum() or x == ' ':
-            count += 1
-    return count
-
-count_characters('Tatsumaki Senpukyaku!')
 
 
 # In[ ]:
