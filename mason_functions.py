@@ -362,3 +362,12 @@ def count_Trues(list):
 
 count_Trues([True, False, True, False, True, False, True])
 
+
+# In[ ]:
+
+
+#Thank you, Ryan Orsinger
+def get_db_url(db_name):
+    from env import host, user, password
+    return f'mysql+pymysql://{user}:{password}@{host}/{db_name}'
+
