@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
 
 
 #1
@@ -20,7 +16,6 @@ def is_two(x):
 is_two('2')
 
 
-# In[2]:
 
 
 #2
@@ -38,7 +33,6 @@ def is_vowel(x):
 is_vowel('A')
 
 
-# In[3]:
 
 
 #3
@@ -55,7 +49,6 @@ def is_consonant(x):
 is_consonant('B')
 
 
-# In[4]:
 
 
 #4
@@ -73,7 +66,6 @@ def capitalize_consonant_words(string):
 capitalize_consonant_words('success')
 
 
-# In[5]:
 
 
 #5
@@ -87,7 +79,6 @@ def calculate_tip(percentage, bill):
 calculate_tip(.22, 18.24)
 
 
-# In[6]:
 
 
 #6 
@@ -99,7 +90,6 @@ def apply_discount(price, disc):
 apply_discount(24.99, .8)
 
 
-# In[7]:
 
 
 #7
@@ -121,7 +111,6 @@ def handle_commas(string):
 handle_commas('12,345,678.9')
 
 
-# In[8]:
 
 
 #8
@@ -145,7 +134,6 @@ def get_letter_grade(x):
 get_letter_grade(69)
 
 
-# In[9]:
 
 
 #9
@@ -164,7 +152,6 @@ def remove_vowels(string):
 remove_vowels('Nnnnooooooooooo!!!!')
 
 
-# In[10]:
 
 
 #10
@@ -211,7 +198,6 @@ if __name__ == '__main__':
     print(normalize_name('1man'))
 
 
-# In[11]:
 
 
 #Example code
@@ -235,14 +221,12 @@ c = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 cumulative_sum(c)
 
 
-# In[12]:
 
 
 #Mason's personal functions
 #import mason_functions as mf
 
 
-# In[13]:
 
 
 #pull a number from a string with one number 
@@ -259,7 +243,6 @@ pull_an_integer_from_a_string_with_one_integer('Yo! You have 38 unread messages!
 #from mason_functions import pull_an_integer_from_a_string_with_one_integer as pin
 
 
-# In[14]:
 
 
 #get an average of one list (take one paramater and return a float)
@@ -270,7 +253,6 @@ a = [1, 2, 3, 4,]
 average(a)
 
 
-# In[15]:
 
 
 #move the first item in an sequence to the last position of a sequence (take one parameter and return a list)
@@ -285,7 +267,6 @@ def first_to_last(s):
 first_to_last([1, 2, 3, 4, 5,])
 
 
-# In[16]:
 
 
 #get the median of a list of numbers (take one parameter and return a float)
@@ -321,7 +302,6 @@ if __name__ == '__main__':
     print(median([1, 100, 2, 90]))
 
 
-# In[17]:
 
 
 #count some vowels m8
@@ -335,7 +315,6 @@ def count_vowels(string):
 count_vowels('Hadouken!')
 
 
-# In[18]:
 
 
 #count some consonants m9
@@ -349,7 +328,6 @@ def count_consonants(string):
 count_consonants('Shoryuken!')
 
 
-# In[19]:
 
 
 #Is it true, Brutus? Ay tu?
@@ -363,7 +341,6 @@ def count_Trues(list):
 count_Trues([True, False, True, False, True, False, True])
 
 
-# In[20]:
 
 
 #Thank you, Ryan Orsinger
@@ -372,7 +349,6 @@ def get_db_url(db_name):
     return f'mysql+pymysql://{user}:{password}@{host}/{db_name}'
 
 
-# In[21]:
 
 
 #is it 3?
@@ -387,7 +363,6 @@ if __name__ == '__main__':
     print(is_three(3))
 
 
-# In[22]:
 
 
 #I would like to see these numbers more clearly-- faster
@@ -419,7 +394,7 @@ def add_commas(x):
     elif len(str(x)) == 8:
         return str(x)[:2] + ',' + str(x)[2:5] + ',' + str(x)[5:]
     
-    #if it's cat
+    #if it's a kitty
     elif len(str(x)) == 9:
         return str(x)[:3] + ',' + str(x)[3:6] + ',' + str(x)[6:]
     
