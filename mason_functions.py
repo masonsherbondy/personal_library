@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-
+# In[1]:
 
 
 #1
@@ -20,7 +20,7 @@ def is_two(x):
 is_two('2')
 
 
-
+# In[2]:
 
 
 #2
@@ -38,7 +38,7 @@ def is_vowel(x):
 is_vowel('A')
 
 
-
+# In[3]:
 
 
 #3
@@ -55,7 +55,7 @@ def is_consonant(x):
 is_consonant('B')
 
 
-
+# In[4]:
 
 
 #4
@@ -73,7 +73,7 @@ def capitalize_consonant_words(string):
 capitalize_consonant_words('success')
 
 
-
+# In[5]:
 
 
 #5
@@ -87,7 +87,7 @@ def calculate_tip(percentage, bill):
 calculate_tip(.22, 18.24)
 
 
-
+# In[6]:
 
 
 #6 
@@ -99,7 +99,7 @@ def apply_discount(price, disc):
 apply_discount(24.99, .8)
 
 
-
+# In[7]:
 
 
 #7
@@ -121,7 +121,7 @@ def handle_commas(string):
 handle_commas('12,345,678.9')
 
 
-
+# In[8]:
 
 
 #8
@@ -145,7 +145,7 @@ def get_letter_grade(x):
 get_letter_grade(69)
 
 
-
+# In[9]:
 
 
 #9
@@ -164,13 +164,13 @@ def remove_vowels(string):
 remove_vowels('Nnnnooooooooooo!!!!')
 
 
-
+# In[10]:
 
 
 #10
 #normalize_name defines a single parameter, a string, and returns a string value
 def normalize_name(string):
-    #python identifiers cannot start with numbers. Loop through string until first character of string is not 
+    #python identifiers can not start with numbers. Loop through string until first character of string is not 
     #a number. move numbers to the back
     while string[0].isdigit():
         string = string[1:] + string[0]
@@ -181,7 +181,7 @@ def normalize_name(string):
     e_name = ''
     #twice
     end_game = ''
-    #start a loop to see if string characters are python-identifer compliant
+    #start a loop to see if string characters are python identifer compliant
     for char in f_name:
         #include space so we don't have random underscores at the beginning or end if original string input includes
         #invalid characters for python-identifier compliance at the beginning or end of original input and spaces
@@ -199,7 +199,7 @@ def normalize_name(string):
             end_game += char
         #check to see if character is a space
         if char == ' ':
-            #add an underscore to the second string variable in any space's stead
+            #add an underscore to the second string variable in a space's stead
             end_game += '_'
     #return the python-identifier-compliant second string variable value
     return end_game
@@ -211,7 +211,7 @@ if __name__ == '__main__':
     print(normalize_name('1man'))
 
 
-
+# In[11]:
 
 
 #Example code
@@ -235,14 +235,14 @@ c = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 cumulative_sum(c)
 
 
-
+# In[12]:
 
 
 #Mason's personal functions
 #import mason_functions as mf
 
 
-
+# In[13]:
 
 
 #pull a number from a string with one number 
@@ -259,7 +259,7 @@ pull_an_integer_from_a_string_with_one_integer('Yo! You have 38 unread messages!
 #from mason_functions import pull_an_integer_from_a_string_with_one_integer as pin
 
 
-
+# In[14]:
 
 
 #get an average of one list (take one paramater and return a float)
@@ -270,34 +270,22 @@ a = [1, 2, 3, 4,]
 average(a)
 
 
+# In[15]:
 
 
-
-#first_to_last moves the first item in an sequence to the last position of a sequence (input a list and ouput a list)
+#move the first item in an sequence to the last position of a sequence (take one parameter and return a list)
 def first_to_last(s):
     #assign a variable to the first item of the sequence
     x = s[0]
-    #define the sequence starting with the second item and add the first item to the end of the sequence
+    #assign a variable to the sequence starting with the second item and add the first item to the end of the sequence
     s = s[1:] + [x]
     #return the new sequence with the first item at the end and the second item in front
     return s
 
-first_to_last([1, 2, 3, 4, 5])
+first_to_last([1, 2, 3, 4, 5,])
 
 
-
-
-#last_to_first takes in a single parameter, an ordered list, and returns a list with the last element upfront
-def last_to_first(sequence):
-    #assign a variable to the last item of the sequence
-    x = sequence[-1]
-    #define the sequence as the last item in addition to all other items in the sequence
-    sequence = [x] + sequence[0:]
-    #return the new list
-    return sequence
-
-
-
+# In[16]:
 
 
 #get the median of a list of numbers (take one parameter and return a float)
@@ -333,7 +321,7 @@ if __name__ == '__main__':
     print(median([1, 100, 2, 90]))
 
 
-
+# In[17]:
 
 
 #count some vowels m8
@@ -347,7 +335,7 @@ def count_vowels(string):
 count_vowels('Hadouken!')
 
 
-
+# In[18]:
 
 
 #count some consonants m9
@@ -361,7 +349,7 @@ def count_consonants(string):
 count_consonants('Shoryuken!')
 
 
-
+# In[19]:
 
 
 #Is it true, Brutus? Ay tu?
@@ -375,7 +363,7 @@ def count_Trues(list):
 count_Trues([True, False, True, False, True, False, True])
 
 
-
+# In[20]:
 
 
 #Thank you, Ryan Orsinger
@@ -384,14 +372,12 @@ def get_db_url(db_name):
     return f'mysql+pymysql://{user}:{password}@{host}/{db_name}'
 
 
-
+# In[21]:
 
 
 #is it 3?
 def is_three(x):
-    if x == 3 or x == '3':
-        return True
-    elif x.lower() == 'three':
+    if x == 3 or x == '3' or x.lower() == 'three':
         return True
     else:
         return False
@@ -400,4 +386,70 @@ if __name__ == '__main__':
     print(is_three('3'))
     print(is_three(3))
 
+
+# In[22]:
+
+
+#I would like to see these numbers more clearly-- faster
+
+#add_commas defines a single parameter, x (a float or integer up to 13 digits long), and returns a string
+def add_commas(x):
+    
+    #if there are 3 digits or less, we don't need to add commas
+    if len(str(x)) < 4:
+        return str(x)
+    
+    #if there are 4 digits, return the string appropriately formatted
+    elif len(str(x)) == 4:
+        return str(x)[:1] + ',' + str(x)[1:]
+    
+    #else if there are 5 digits...
+    elif len(str(x)) == 5:
+        return str(x)[:2] + ',' + str(x)[2:]
+    
+    #what's here?
+    elif len(str(x)) == 6:
+        return str(x)[:3] + ',' + str(x)[3:]
+    
+    #what's here?
+    elif len(str(x)) == 7:
+        return str(x)[:1] + ',' + str(x)[1:4] + ',' + str(x)[4:]
+    
+    #what's here?
+    elif len(str(x)) == 8:
+        return str(x)[:2] + ',' + str(x)[2:5] + ',' + str(x)[5:]
+    
+    #if it's cat
+    elif len(str(x)) == 9:
+        return str(x)[:3] + ',' + str(x)[3:6] + ',' + str(x)[6:]
+    
+    #if it's in the billions
+    elif len(str(x)) == 10:
+        return str(x)[:1] + ',' + str(x)[1:4] + ',' + str(x)[4:7] + ',' + str(x)[7:]
+    
+    #if it's in the tens of billions
+    elif len(str(x)) == 11:
+        return str(x)[:2] + ',' + str(x)[2:5] + ',' + str(x)[5:8] + ',' + str(x)[8:]
+    
+    #if it's in the hundreds of billions
+    elif len(str(x)) == 12:
+        return str(x)[:3] + ',' + str(x)[3:6] + ',' + str(x)[6:9] + ',' + str(x)[9:]
+    
+    #lookifanythingmakesitpast the trillions, I am done adding commas
+    elif len(str(x)) == 13:
+        return str(x)[:1] + ',' + str(x)[1:4] + ',' + str(x)[4:7] + ',' + str(x)[7:10] + ',' + str(x)[10:]
+
+#testing, attention please
+if __name__ == '__main__':
+    print(add_commas(100))
+    print(add_commas(1000))
+    print(add_commas(10000))
+    print(add_commas(100000))
+    print(add_commas(1000000))
+    print(add_commas(10000000))
+    print(add_commas(100000000))
+    print(add_commas(1000000000))
+    print(add_commas(10000000000))
+    print(add_commas(100000000000))
+    print(add_commas(1000000000000))
 
