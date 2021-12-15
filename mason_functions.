@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[ ]:
 
 
 #1
@@ -16,6 +20,7 @@ def is_two(x):
 is_two('2')
 
 
+# In[ ]:
 
 
 #2
@@ -33,6 +38,7 @@ def is_vowel(x):
 is_vowel('A')
 
 
+# In[ ]:
 
 
 #3
@@ -49,6 +55,7 @@ def is_consonant(x):
 is_consonant('B')
 
 
+# In[ ]:
 
 
 #4
@@ -66,6 +73,7 @@ def capitalize_consonant_words(string):
 capitalize_consonant_words('success')
 
 
+# In[ ]:
 
 
 #5
@@ -79,6 +87,7 @@ def calculate_tip(percentage, bill):
 calculate_tip(.22, 18.24)
 
 
+# In[ ]:
 
 
 #6 
@@ -90,6 +99,7 @@ def apply_discount(price, disc):
 apply_discount(24.99, .8)
 
 
+# In[ ]:
 
 
 #7
@@ -111,6 +121,7 @@ def handle_commas(string):
 handle_commas('12,345,678.9')
 
 
+# In[ ]:
 
 
 #8
@@ -134,6 +145,7 @@ def get_letter_grade(x):
 get_letter_grade(69)
 
 
+# In[ ]:
 
 
 #9
@@ -152,6 +164,7 @@ def remove_vowels(string):
 remove_vowels('Nnnnooooooooooo!!!!')
 
 
+# In[ ]:
 
 
 #10
@@ -198,6 +211,7 @@ if __name__ == '__main__':
     print(normalize_name('1man'))
 
 
+# In[ ]:
 
 
 #Example code
@@ -221,12 +235,14 @@ c = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 cumulative_sum(c)
 
 
+# In[ ]:
 
 
 #Mason's personal functions
 #import mason_functions as mf
 
 
+# In[ ]:
 
 
 #pull a number from a string with one number 
@@ -243,6 +259,7 @@ pull_an_integer_from_a_string_with_one_integer('Yo! You have 38 unread messages!
 #from mason_functions import pull_an_integer_from_a_string_with_one_integer as pin
 
 
+# In[ ]:
 
 
 #get an average of one list (take one paramater and return a float)
@@ -253,6 +270,7 @@ a = [1, 2, 3, 4,]
 average(a)
 
 
+# In[ ]:
 
 
 #move the first item in an sequence to the last position of a sequence (take one parameter and return a list)
@@ -267,6 +285,7 @@ def first_to_last(s):
 first_to_last([1, 2, 3, 4, 5,])
 
 
+# In[ ]:
 
 
 #get the median of a list of numbers (take one parameter and return a float)
@@ -302,6 +321,7 @@ if __name__ == '__main__':
     print(median([1, 100, 2, 90]))
 
 
+# In[ ]:
 
 
 #count some vowels m8
@@ -315,6 +335,7 @@ def count_vowels(string):
 count_vowels('Hadouken!')
 
 
+# In[ ]:
 
 
 #count some consonants m9
@@ -328,6 +349,21 @@ def count_consonants(string):
 count_consonants('Shoryuken!')
 
 
+# In[ ]:
+
+
+#count letters in a word
+def count_characters(string):
+    count = 0
+    for x in string:
+        if x.isalnum() or x in " ,./<>?:;[]{}_)(*&^%$#@!~`\|'":
+            count += 1
+    return count
+
+count_characters('Tatsumaki Senpukyaku!')
+
+
+# In[ ]:
 
 
 #Is it true, Brutus? Ay tu?
@@ -340,112 +376,3 @@ def count_Trues(list):
 
 count_Trues([True, False, True, False, True, False, True])
 
-
-
-
-#Thank you, Ryan Orsinger
-def get_db_url(db_name):
-    from env import host, user, password
-    return f'mysql+pymysql://{user}:{password}@{host}/{db_name}'
-
-
-
-
-#is it 3?
-def is_three(x):
-    if x == 3 or x == '3' or x.lower() == 'three':
-        return True
-    else:
-        return False
-if __name__ == '__main__':        
-    print(is_three('ThREe'))
-    print(is_three('3'))
-    print(is_three(3))
-
-
-
-
-#I would like to see these numbers more clearly-- faster
-
-#add_commas defines a single parameter, x (an integer up to 13 digits long), and returns a string
-def add_commas(x):
-    
-    #if there are 3 digits or less, we don't need to add commas
-    if len(str(x)) < 4:
-        return str(x)
-    
-    #if there are 4 digits, return the string appropriately formatted
-    elif len(str(x)) == 4:
-        return str(x)[:1] + ',' + str(x)[1:]
-    
-    #else if there are 5 digits...
-    elif len(str(x)) == 5:
-        return str(x)[:2] + ',' + str(x)[2:]
-    
-    #what's here?
-    elif len(str(x)) == 6:
-        return str(x)[:3] + ',' + str(x)[3:]
-    
-    #what's here?
-    elif len(str(x)) == 7:
-        return str(x)[:1] + ',' + str(x)[1:4] + ',' + str(x)[4:]
-    
-    #what's here?
-    elif len(str(x)) == 8:
-        return str(x)[:2] + ',' + str(x)[2:5] + ',' + str(x)[5:]
-    
-    #if it's a kitty
-    elif len(str(x)) == 9:
-        return str(x)[:3] + ',' + str(x)[3:6] + ',' + str(x)[6:]
-    
-    #if it's in the billions
-    elif len(str(x)) == 10:
-        return str(x)[:1] + ',' + str(x)[1:4] + ',' + str(x)[4:7] + ',' + str(x)[7:]
-    
-    #if it's in the tens of billions
-    elif len(str(x)) == 11:
-        return str(x)[:2] + ',' + str(x)[2:5] + ',' + str(x)[5:8] + ',' + str(x)[8:]
-    
-    #if it's in the hundreds of billions
-    elif len(str(x)) == 12:
-        return str(x)[:3] + ',' + str(x)[3:6] + ',' + str(x)[6:9] + ',' + str(x)[9:]
-    
-    #lookifanythingmakesitpast the trillions, I am done adding commas
-    elif len(str(x)) == 13:
-        return str(x)[:1] + ',' + str(x)[1:4] + ',' + str(x)[4:7] + ',' + str(x)[7:10] + ',' + str(x)[10:]
-
-#testing, attention please
-if __name__ == '__main__':
-    print(add_commas(100))
-    print(add_commas(1000))
-    print(add_commas(10000))
-    print(add_commas(100000))
-    print(add_commas(1000000))
-    print(add_commas(10000000))
-    print(add_commas(100000000))
-    print(add_commas(1000000000))
-    print(add_commas(10000000000))
-    print(add_commas(100000000000))
-    print(add_commas(1000000000000))
-
-    
-    
-#reference for splitting data    
-def split_data(df):
-    '''
-    Takes in a dataset and returns the train, validate, and test subset dataframes.
-    Dataframe size for my test set is .2 or 20% of the original data. 
-    Validate data is 30% of my training set, which is 24% of the original data. 
-    Training data is 56% of the original data.
-    '''
-    #import splitter
-    from sklearn.model_selection import train_test_split
-    
-    #get my training and test data sets defined, stratify my target variable
-    train, test = train_test_split(df, test_size = .2, random_state = 421)
-    
-    #get my validate set from the training set, stratify target variable again
-    train, validate = train_test_split(train, test_size = .3, random_state = 421)
-    
-    #return the 3 dataframes
-    return train, validate, test

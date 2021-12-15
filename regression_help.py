@@ -765,7 +765,7 @@ def rfe(X_train, y_train, k):
 #list_scaled defines 5 parameters, your train, validate and test sets, your list of features you scaled (quant_vars) and the number of features you scaled (k), and returns a list of the scaled columns (scaled).
 def list_scaled(train, validate, test, quant_vars, k):
 
-    #set up a chain of if-conditionals to see what k (number of features to scale or len(quant_vars)) is, and then
+    #set up a chain of if-conditionals to see what k (number of features scaled or len(quant_vars)) is, and then
     if k == 1:
         #use the force
         scaled = [f'{quant_vars[0]}_scaled']

@@ -303,27 +303,27 @@ def plot_21_vp(df, quant_vars):
     plt.title(f'R-value: {round(corr15, 3)} | P-value: {round(p15, 4)} \n -----------------');)
 
     #plot XVI
-    sns.lmplot(x = quant_vars[4], y = quant_vars[3], data = df, line_kws = {'color': 'purple'})
+    sns.lmplot(x = quant_vars[6], y = quant_vars[0], data = df, line_kws = {'color': 'purple'})
     plt.title(f'R-value: {round(corr16, 3)} | P-value: {round(p16, 4)} \n -----------------');)
 
     #plot XVII
-    sns.lmplot(x = quant_vars[5], y = quant_vars[0], data = df, line_kws = {'color': 'purple'})
+    sns.lmplot(x = quant_vars[6], y = quant_vars[1], data = df, line_kws = {'color': 'purple'})
     plt.title(f'R-value: {round(corr17, 3)} | P-value: {round(p17, 4)} \n -----------------');
 
     #plot XVIII
-    sns.lmplot(x = quant_vars[5], y = quant_vars[1], data = df, line_kws = {'color': 'purple'})
+    sns.lmplot(x = quant_vars[6], y = quant_vars[2], data = df, line_kws = {'color': 'purple'})
     plt.title(f'R-value: {round(corr18, 3)} | P-value: {round(p18, 4)} \n -----------------');
 
     #plot XIX
-    sns.lmplot(x = quant_vars[5], y = quant_vars[2], data = df, line_kws = {'color': 'purple'})
+    sns.lmplot(x = quant_vars[6], y = quant_vars[3], data = df, line_kws = {'color': 'purple'})
     plt.title(f'R-value: {round(corr19, 3)} | P-value: {round(p19, 4)} \n -----------------');
 
     #plot XX
-    sns.lmplot(x = quant_vars[5], y = quant_vars[3], data = df, line_kws = {'color': 'purple'})
+    sns.lmplot(x = quant_vars[6], y = quant_vars[4], data = df, line_kws = {'color': 'purple'})
     plt.title(f'R-value: {round(corr20, 3)} | P-value: {round(p20, 4)} \n -----------------');
     
     #plot XXI
-    sns.lmplot(x = quant_vars[5], y = quant_vars[4], data = df, line_kws = {'color': 'purple'})
+    sns.lmplot(x = quant_vars[6], y = quant_vars[5], data = df, line_kws = {'color': 'purple'})
     plt.title(f'R-value: {round(corr21, 3)} | P-value: {round(p21, 4)} \n -----------------');)
 
 
@@ -425,57 +425,53 @@ def plot_28_vp(df, quant_vars):
     plt.title(f'R-value: {round(corr15, 3)} | P-value: {round(p15, 4)} \n -----------------');)
 
     #plot XVI
-    sns.lmplot(x = quant_vars[4], y = quant_vars[3], data = df, line_kws = {'color': 'purple'})
+    sns.lmplot(x = quant_vars[6], y = quant_vars[0], data = df, line_kws = {'color': 'purple'})
     plt.title(f'R-value: {round(corr16, 3)} | P-value: {round(p16, 4)} \n -----------------');)
 
     #plot XVII
-    sns.lmplot(x = quant_vars[5], y = quant_vars[0], data = df, line_kws = {'color': 'purple'})
+    sns.lmplot(x = quant_vars[6], y = quant_vars[1], data = df, line_kws = {'color': 'purple'})
     plt.title(f'R-value: {round(corr17, 3)} | P-value: {round(p17, 4)} \n -----------------');
 
     #plot XVIII
-    sns.lmplot(x = quant_vars[5], y = quant_vars[1], data = df, line_kws = {'color': 'purple'})
+    sns.lmplot(x = quant_vars[6], y = quant_vars[2], data = df, line_kws = {'color': 'purple'})
     plt.title(f'R-value: {round(corr18, 3)} | P-value: {round(p18, 4)} \n -----------------');
 
     #plot XIX
-    sns.lmplot(x = quant_vars[5], y = quant_vars[2], data = df, line_kws = {'color': 'purple'})
+    sns.lmplot(x = quant_vars[6], y = quant_vars[3], data = df, line_kws = {'color': 'purple'})
     plt.title(f'R-value: {round(corr19, 3)} | P-value: {round(p19, 4)} \n -----------------');
 
     #plot XX
-    sns.lmplot(x = quant_vars[5], y = quant_vars[3], data = df, line_kws = {'color': 'purple'})
+    sns.lmplot(x = quant_vars[6], y = quant_vars[4], data = df, line_kws = {'color': 'purple'})
     plt.title(f'R-value: {round(corr20, 3)} | P-value: {round(p20, 4)} \n -----------------');
     
     #plot XXI
-    sns.lmplot(x = quant_vars[5], y = quant_vars[4], data = df, line_kws = {'color': 'purple'})
+    sns.lmplot(x = quant_vars[6], y = quant_vars[5], data = df, line_kws = {'color': 'purple'})
     plt.title(f'R-value: {round(corr21, 3)} | P-value: {round(p21, 4)} \n -----------------');)
 
     #plot XXII
-    sns.lmplot(x = quant_vars[5], y = quant_vars[3], data = df, line_kws = {'color': 'purple'})
-    plt.title(f'R-value: {round(corr14, 3)} | P-value: {round(p14, 4)} \n -----------------');
+    sns.lmplot(x = quant_vars[7], y = quant_vars[0], data = df, line_kws = {'color': 'purple'})
+    plt.title(f'R-value: {round(corr22, 3)} | P-value: {round(p22, 4)} \n -----------------');
     
     #plot XXIII
-    sns.lmplot(x = quant_vars[5], y = quant_vars[4], data = df, line_kws = {'color': 'purple'})
-    plt.title(f'R-value: {round(corr15, 3)} | P-value: {round(p15, 4)} \n -----------------');)
+    sns.lmplot(x = quant_vars[7], y = quant_vars[1], data = df, line_kws = {'color': 'purple'})
+    plt.title(f'R-value: {round(corr23, 3)} | P-value: {round(p23, 4)} \n -----------------');)
 
     #plot XXIV
-    sns.lmplot(x = quant_vars[4], y = quant_vars[3], data = df, line_kws = {'color': 'purple'})
-    plt.title(f'R-value: {round(corr16, 3)} | P-value: {round(p16, 4)} \n -----------------');)
+    sns.lmplot(x = quant_vars[7], y = quant_vars[2], data = df, line_kws = {'color': 'purple'})
+    plt.title(f'R-value: {round(corr24, 3)} | P-value: {round(p24, 4)} \n -----------------');)
 
     #plot XXV
-    sns.lmplot(x = quant_vars[5], y = quant_vars[0], data = df, line_kws = {'color': 'purple'})
-    plt.title(f'R-value: {round(corr17, 3)} | P-value: {round(p17, 4)} \n -----------------');
+    sns.lmplot(x = quant_vars[7], y = quant_vars[3], data = df, line_kws = {'color': 'purple'})
+    plt.title(f'R-value: {round(corr25, 3)} | P-value: {round(p25, 4)} \n -----------------');
 
     #plot XXVI
-    sns.lmplot(x = quant_vars[5], y = quant_vars[1], data = df, line_kws = {'color': 'purple'})
-    plt.title(f'R-value: {round(corr18, 3)} | P-value: {round(p18, 4)} \n -----------------');
+    sns.lmplot(x = quant_vars[7], y = quant_vars[4], data = df, line_kws = {'color': 'purple'})
+    plt.title(f'R-value: {round(corr26, 3)} | P-value: {round(p26, 4)} \n -----------------');
 
     #plot XXVII
-    sns.lmplot(x = quant_vars[5], y = quant_vars[2], data = df, line_kws = {'color': 'purple'})
-    plt.title(f'R-value: {round(corr19, 3)} | P-value: {round(p19, 4)} \n -----------------');
+    sns.lmplot(x = quant_vars[7], y = quant_vars[5], data = df, line_kws = {'color': 'purple'})
+    plt.title(f'R-value: {round(corr27, 3)} | P-value: {round(p27, 4)} \n -----------------');
 
     #plot XXVIII
-    sns.lmplot(x = quant_vars[5], y = quant_vars[3], data = df, line_kws = {'color': 'purple'})
-    plt.title(f'R-value: {round(corr20, 3)} | P-value: {round(p20, 4)} \n -----------------');
-    
-    #plot XXIV
-    sns.lmplot(x = quant_vars[5], y = quant_vars[4], data = df, line_kws = {'color': 'purple'})
-    plt.title(f'R-value: {round(corr21, 3)} | P-value: {round(p21, 4)} \n -----------------');)
+    sns.lmplot(x = quant_vars[7], y = quant_vars[6], data = df, line_kws = {'color': 'purple'})
+    plt.title(f'R-value: {round(corr28, 3)} | P-value: {round(p28, 4)} \n -----------------');
