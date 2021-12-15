@@ -367,7 +367,7 @@ if __name__ == '__main__':
 
 #I would like to see these numbers more clearly-- faster
 
-#add_commas defines a single parameter, x (a float or integer up to 13 digits long), and returns a string
+#add_commas defines a single parameter, x (an integer up to 13 digits long), and returns a string
 def add_commas(x):
     
     #if there are 3 digits or less, we don't need to add commas
