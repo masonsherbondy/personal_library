@@ -1,5 +1,3 @@
-
-
 #1
 #is_two defines a single parameter, x (whatever user input), and determines whether or not that input is
 #two (it returns a Boolean value of True or False)
@@ -14,8 +12,6 @@ def is_two(x):
         return False
 
 is_two('2')
-
-
 
 
 #2
@@ -33,8 +29,6 @@ def is_vowel(x):
 is_vowel('A')
 
 
-
-
 #3
 #is_consonant defines a single parameter, x (string of one character), and returns a Boolean True or False
 def is_consonant(x):
@@ -47,8 +41,6 @@ def is_consonant(x):
         return False
     
 is_consonant('B')
-
-
 
 
 #4
@@ -66,8 +58,6 @@ def capitalize_consonant_words(string):
 capitalize_consonant_words('success')
 
 
-
-
 #5
 #calculate_tip defines two parameters, a float and another float, and returns a float value
 def calculate_tip(percentage, bill):
@@ -79,8 +69,6 @@ def calculate_tip(percentage, bill):
 calculate_tip(.22, 18.24)
 
 
-
-
 #6 
 #apply_discount defines two parameters, two floats, and returns a float value
 def apply_discount(price, disc):
@@ -88,8 +76,6 @@ def apply_discount(price, disc):
     return round(price * (1 - disc), 2)
 
 apply_discount(24.99, .8)
-
-
 
 
 #7
@@ -109,8 +95,6 @@ def handle_commas(string):
     return float(c_handled)
 
 handle_commas('12,345,678.9')
-
-
 
 
 #8
@@ -134,8 +118,6 @@ def get_letter_grade(x):
 get_letter_grade(69)
 
 
-
-
 #9
 #remove_vowels determines a single parameter, a string, and returns a string
 def remove_vowels(string):
@@ -149,9 +131,7 @@ def remove_vowels(string):
     #return the string variable with characters that are not vowels
     return v_removed
 
-remove_vowels('Nnnnooooooooooo!!!!')
-
-
+remove_vowels('Nnnnooooooooooo!!!!'):
 
 
 #10
@@ -168,7 +148,7 @@ def normalize_name(string):
     e_name = ''
     #twice
     end_game = ''
-    #start a loop to see if string characters are python identifer compliant
+    #start a loop to see if string characters are python-identifer compliant
     for char in f_name:
         #include space so we don't have random underscores at the beginning or end if original string input includes
         #invalid characters for python-identifier compliance at the beginning or end of original input and spaces
@@ -188,16 +168,14 @@ def normalize_name(string):
         if char == ' ':
             #add an underscore to the second string variable in a space's stead
             end_game += '_'
-    #return the python-identifier-compliant second string variable value
+    #return the second python-identifier-compliant string variable value
     return end_game
 
 if __name__ == '__main__':
     print(normalize_name('First name'))
     print(normalize_name('Name'))
     print(normalize_name('% Completed'))
-    print(normalize_name('1man'))
-
-
+    print(normalize_name('1man')):
 
 
 #Example code
@@ -218,15 +196,11 @@ def cumulative_sum(L):
     return [sum(L[:n + 1]) for n in range(len(L))]
 
 c = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-cumulative_sum(c)
-
-
+cumulative_sum(c):
 
 
 #Mason's personal functions
-#import mason_functions as mf
-
-
+#import mason_functions as mf:
 
 
 #pull a number from a string with one number 
@@ -240,9 +214,7 @@ def pull_an_integer_from_a_string_with_one_integer(string):
 pull_an_integer_from_a_string_with_one_integer('Yo! You have 38 unread messages!')
 #good to alias it as 'pin'
 #can copy and paste below after '#' marker:
-#from mason_functions import pull_an_integer_from_a_string_with_one_integer as pin
-
-
+#from mason_functions import pull_an_integer_from_a_string_with_one_integer as pin:
 
 
 #get an average of one list (take one paramater and return a float)
@@ -250,9 +222,7 @@ def average(n):
     return sum(n) / len(n)
 
 a = [1, 2, 3, 4,]
-average(a)
-
-
+average(a):
 
 
 #move the first item in an sequence to the last position of a sequence (take one parameter and return a list)
@@ -264,9 +234,7 @@ def first_to_last(s):
     #return the new sequence with the first item at the end and the second item in front
     return s
 
-first_to_last([1, 2, 3, 4, 5,])
-
-
+first_to_last([1, 2, 3, 4, 5,]):
 
 
 #get the median of a list of numbers (take one parameter and return a float)
@@ -299,9 +267,7 @@ if __name__ == '__main__':
     print(median([1, 2, 70, 80, 90, 100]))
     print(median([1, 2, 3, 4, 5]))
     print(median([4, 8, 1, 2, 38]))
-    print(median([1, 100, 2, 90]))
-
-
+    print(median([1, 100, 2, 90])):
 
 
 #count some vowels m8
@@ -312,9 +278,7 @@ def count_vowels(string):
             count += 1
     return count
 
-count_vowels('Hadouken!')
-
-
+count_vowels('Hadouken!'):
 
 
 #count some consonants m9
@@ -325,9 +289,7 @@ def count_consonants(string):
             count += 1
     return count
 
-count_consonants('Shoryuken!')
-
-
+count_consonants('Shoryuken!'):
 
 
 #Is it true, Brutus? Ay tu?
@@ -338,36 +300,39 @@ def count_Trues(list):
             count += 1
     return count
 
-count_Trues([True, False, True, False, True, False, True])
-
-
+count_Trues([True, False, True, False, True, False, True]):
 
 
 #Thank you, Ryan Orsinger
+
+#get_db_url defines a single parameter, the name of the relational database subject to target access, and returns and runs code necessary to contact the database.
+#TL; DR: This function contacts the database.
 def get_db_url(db_name):
+    
+    #import credentials
     from env import host, user, password
-    return f'mysql+pymysql://{user}:{password}@{host}/{db_name}'
+    
+    #return and run code to contact relational database
+    return f'mysql+pymysql://{user}:{password}@{host}/{db_name}':
 
 
-
-
-#is it 3?
+#is it 3? True or False, folks.
 def is_three(x):
     if x == 3 or x == '3' or x.lower() == 'three':
         return True
     else:
         return False
+
+#True
 if __name__ == '__main__':        
     print(is_three('ThREe'))
     print(is_three('3'))
-    print(is_three(3))
-
-
+    print(is_three(3)):
 
 
 #I would like to see these numbers more clearly-- faster
 
-#add_commas defines a single parameter, x (an integer up to 13 digits long), and returns a string
+#add_commas defines a single parameter, x (a float or integer up to 13 digits long), and returns a string representing that number in a traditionally distinguishable manner.
 def add_commas(x):
     
     #if there are 3 digits or less, we don't need to add commas
@@ -426,26 +391,51 @@ if __name__ == '__main__':
     print(add_commas(1000000000))
     print(add_commas(10000000000))
     print(add_commas(100000000000))
-    print(add_commas(1000000000000))
+    print(add_commas(1000000000000)):
 
-    
-    
+
 #reference for splitting data    
+
+#split data defines one parameter, a clean dataframe, and returns my train, validate and test sets.
 def split_data(df):
     '''
     Takes in a dataset and returns the train, validate, and test subset dataframes.
     Dataframe size for my test set is .2 or 20% of the original data. 
     Validate data is 30% of my training set, which is 24% of the original data. 
-    Training data is 56% of the original data.
+    Training data is 70% of my original training set, which is 56% total of the original data.
     '''
     #import splitter
     from sklearn.model_selection import train_test_split
     
-    #get my training and test data sets defined, stratify my target variable
+    #get my training and test data sets defined
     train, test = train_test_split(df, test_size = .2, random_state = 421)
     
-    #get my validate set from the training set, stratify target variable again
+    #get my validate set from the training set
     train, validate = train_test_split(train, test_size = .3, random_state = 421)
     
     #return the 3 dataframes
     return train, validate, test
+
+
+#reference for splitting data (classification method)
+
+#split_dat_strat defines two parameters, a clean dataframe (df) and my target variable (target), and returns my train, validate and test sets with the target variable stratified amonngst them, whatever that means.
+def split_data_strat(df, target):
+    '''
+    Takes in a dataset and returns the train, validate, and test subset dataframes.
+    Dataframe size for my test set is .2 or 20% of the original data. 
+    Validate data is 30% of my training set, which is 24% of the original data. 
+    Training data is 70% of my original training set, which is 56% total of the original data.
+    '''
+    #import splitter
+    from sklearn.model_selection import train_test_split
+    
+    #get my training and test data sets defined
+    train, test = train_test_split(df, test_size = .2, random_state = 421, stratify = df[target])
+    
+    #get my validate set from the training set
+    train, validate = train_test_split(train, test_size = .3, random_state = 421, stratify = train[target])
+    
+    #return the 3 dataframes
+    return train, validate, test
+
