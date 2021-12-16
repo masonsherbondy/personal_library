@@ -43,7 +43,7 @@ def plot_joint_residuals(y, y_hat):
     plt.axhline(y = 0, ls = ':', color = 'firebrick')
 
     #clarity
-    plt.title('Residuals From Predicted Values', pad = 88, size = 17, color = 'indigo')
+    plt.title('Residuals From Predicted Values', pad = 88, size = 17, color = 'slategray')
     plt.xlabel('Actual Value', size = 15)
     plt.ylabel('Residual', size = 15, color = 'slategray');
 
