@@ -16,10 +16,14 @@ import mason_functions as mf
 #quant_vars is a list of eligible columns you wish to scale
 #Note: You must load your train, validate and test samples, and you must define quant_vars before running the scaler functions.
 
+
+# Please ignore the next two comment lines
 ### Scaler functions define 4 parameters, your train, validate and test sets as well a list of columns to scale, and add appropriately scaled columms to your train, validate, and test dataframes.
 ## Author will write more code when called upon to scale more than 8 columns, because he couldn't figure out how to loop this mess.
 
-### /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ ROBUST SCALER /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ ###
+# Author lifted code so that new scaler functions (involving very few lines of code compared to the old scaler functions) are not limited by number of features.
+
+### /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ ROBUST SCALERS /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ ###
 
 def busta_scale(train, validate, test, quant_vars):
 
@@ -154,6 +158,31 @@ def busta_scale(train, validate, test, quant_vars):
         return train, validate, test
 
 
+### AHEM!
+#actually just use this function instead
+def robust_scaler(train, validate, test, quant_vars):
+    
+    #creation
+    scaler = sklearn.preprocessing.RobustScaler()
+    #fitting
+    scaler.fit(train[quant_vars])
+
+    #assign new dataframes
+    train_scaled = train[quant_vars]
+    validate_scaled = validate[quant_vars]
+    test_scaled = test[quant_vars]
+
+    #transforming
+    train_scaled[quant_vars] = scaler.transform(train[quant_vars])
+    validate_scaled[quant_vars] = scaler.transform(validate[quant_vars])
+    test_scaled[quant_vars] = scaler.transform(test[quant_vars])
+
+    #return scaled sets and the scaler
+    return train_scaled, validate_scaled, test_scaled, scaler
+
+#and when you use this function, do it like this:
+#train_scaled, validate_scaled, test_scaled, scaler = insert_scaler_function_here(train, validate, test, quant_vars)
+
 
 ### /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ MIN-MAX SCALER /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ ###
 
@@ -287,6 +316,33 @@ def min_max_scale(train, validate, test, quant_vars):
         return train, validate, test
 
 
+### Stop! Stop... stop.
+#just use this function instead (can scale more than 8 features lol)
+def max_min_scaler(train, validate, test, quant_vars):
+
+    #creation
+    scaler = sklearn.preprocessing.MinMaxScaler()
+    #fitting
+    scaler.fit(train[quant_vars])
+
+    #assign new dataframes
+    train_scaled = train[quant_vars]
+    validate_scaled = validate[quant_vars]
+    test_scaled = test[quant_vars]
+
+    #autobots, roll out
+    train_scaled[quant_vars] = scaler.transform(train[quant_vars])
+    validate_scaled[quant_vars] = scaler.transform(validate[quant_vars])
+    test_scaled[quant_vars] = scaler.transform(test[quant_vars])
+
+    #return scaled sets and the scaler
+    return train_scaled, validate_scaled, test_scaled, scaler
+
+#and when you use this function, do it like this:
+#train_scaled, validate_scaled, test_scaled, scaler = insert_scaler_function_here(train, validate, test, quant_vars)
+
+
+
 
 ### /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ STANDARD SCALER /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ ###
 
@@ -418,6 +474,33 @@ def standard_scale(train, validate, test, quant_vars):
 
         #return dataframes with added columns
         return train, validate, test
+
+
+
+### Freeze!
+#this function is not limited by a number of features to scale
+def standard_scaler(train, validate, test, quant_vars):
+
+    #creation
+    scaler = sklearn.preprocessing.StandardScaler()
+    #fitting
+    scaler.fit(train[quant_vars])
+    
+    #assign new dataframes
+    train_scaled = train[quant_vars]
+    validate_scaled = validate[quant_vars]
+    test_scaled = test[quant_vars]
+
+    #autobots do it
+    train_scaled[quant_vars] = scaler.transform(train[quant_vars])
+    validate_scaled[quant_vars] = scaler.transform(validate[quant_vars])
+    test_scaled[quant_vars] = scaler.transform(test[quant_vars])
+
+    #return scaled sets and the scaler
+    return train_scaled, validate_scaled, test_scaled, scaler
+
+#and when you use this function, do it like this:
+#train_scaled, validate_scaled, test_scaled, scaler = insert_scaler_function_here(train, validate, test, quant_vars)
 
 
 
@@ -555,6 +638,31 @@ def quantile_norm_scale(train, validate, test, quant_vars):
         return train, validate, test
 
 
+### Halt!
+#this function is not limited by a number of features to scale
+def quantile_norm_scaler(train, validate, test, quant_vars):
+
+    #creation
+    scaler = sklearn.preprocessing.QuantileTransformer(output_distribution = 'normal')
+    #fitting
+    scaler.fit(train[quant_vars])
+    
+    #assign new dataframes
+    train_scaled = train[quant_vars]
+    validate_scaled = validate[quant_vars]
+    test_scaled = test[quant_vars]
+
+    #autobots do it
+    train_scaled[quant_vars] = scaler.transform(train[quant_vars])
+    validate_scaled[quant_vars] = scaler.transform(validate[quant_vars])
+    test_scaled[quant_vars] = scaler.transform(test[quant_vars])
+
+    #return scaled sets and the scaler
+    return train_scaled, validate_scaled, test_scaled, scaler
+
+#and when you use this function, do it like this:
+#train_scaled, validate_scaled, test_scaled, scaler = insert_scaler_function_here(train, validate, test, quant_vars)
+
 
 ##### UNIFORM QUANTILE SCALER
 def quantile_uniform_scale(train, validate, test, quant_vars):
@@ -685,6 +793,30 @@ def quantile_uniform_scale(train, validate, test, quant_vars):
 
 
 
+### Attention!
+#this function is not limited by a number of features to scale
+def quantile_uniform_scaler(train, validate, test, quant_vars):
+
+    #creation
+    scaler = sklearn.preprocessing.QuantileTransformer(output_distribution = 'uniform')
+    #fitting
+    scaler.fit(train[quant_vars])
+    #assign new dataframes
+    train_scaled = train[quant_vars]
+    validate_scaled = validate[quant_vars]
+    test_scaled = test[quant_vars]
+
+    #autobots do it
+    train_scaled[quant_vars] = scaler.transform(train[quant_vars])
+    validate_scaled[quant_vars] = scaler.transform(validate[quant_vars])
+    test_scaled[quant_vars] = scaler.transform(test[quant_vars])
+
+    #return scaled sets and the scaler
+    return train_scaled, validate_scaled, test_scaled, scaler
+
+#and when you use this function, do it like this:
+#train_scaled, validate_scaled, test_scaled, scaler = insert_scaler_function_here(train, validate, test, quant_vars)
+
 
 
 
@@ -753,8 +885,8 @@ def rfe(X_train, y_train, k):
 ### /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ MODEL DATA SETUP HOSTED HERE /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ ###
 
 
-### Notes: must have used the above scaling functions or have defined a list of the columns you scaled prior to scaling and imported new columns into your dataframes that are named: f'{column}_scaled' prior to running this function.
-### Notes: If you want this function to be of use, recommend setting up X_train (afterward) with a list called scaled, such as:
+## Notes: must have used the above scale functions (NOT THE SCALER ONES, THOSE ONES RENDER THIS PROCESS OBSOLETE) or have defined a list of the columns you scaled prior to scaling and imported new columns into your dataframes that are named: f'{column}_scaled' prior to running this function.
+## Notes: If you want this function to be of use, recommend setting up X_train (afterward) with a list called scaled, such as:
     ### X_train = train[scaled]
     ### y_train = train['target_variable'] 
 
@@ -763,7 +895,7 @@ def rfe(X_train, y_train, k):
 
     ### X_test = 
 
-    ### OR when you fit your model onto the training data, you can pick and choose between scaled features and slice the list. you must be familar with your list lol
+    ## OR when you fit your model onto the training data, you can pick and choose between scaled features and slice the list. you must be familar with your list lol
     ### dang this is kinda starting to look like what feature selection already does. IT IS TIME TO END IT. THIS IS AS FAR AS THIS RABBIT HOLE GOES.
 
     ### linear_model.fit(X_train[scaled[2]], y_train)
@@ -774,10 +906,12 @@ def rfe(X_train, y_train, k):
     ### lm2.fit(X_train[[f'{quant_vars[0]}_scaled', f'{quant_vars[1]}_scaled']], y_train)
     ### validate['y_hat'] = lm2.predict(X_validate[[f'{quant_vars[0]}_scaled', f'{quant_vars[1]}_scaled']])
 
-### Otherwise these functions are a total waste and a buzz kill
-### This list only has value if you are fitting your model onto all of the scaled features (just do it) or are adept at slicing into dataframes
+## Otherwise these functions are a total waste and a buzz kill
+## This list only has value if you are fitting your model onto all of the scaled features (just do it) or are adept at slicing into dataframes
 
 
+
+### Why did I write this function?
 #list_scaled defines 4 parameters, your train, validate and test sets, your list of features you scaled (quant_vars), and returns a list of the scaled columns (scaled).
 def list_scaled(train, validate, test, quant_vars):
     
