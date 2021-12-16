@@ -762,8 +762,11 @@ def rfe(X_train, y_train, k):
 ### This list only has value if you are fitting your model onto all of the scaled features (just do it) or are adept at slicing into dataframes
 
 
-#list_scaled defines 5 parameters, your train, validate and test sets, your list of features you scaled (quant_vars) and the number of features you scaled (k), and returns a list of the scaled columns (scaled).
-def list_scaled(train, validate, test, quant_vars, k):
+#list_scaled defines 4 parameters, your train, validate and test sets, your list of features you scaled (quant_vars), and returns a list of the scaled columns (scaled).
+def list_scaled(train, validate, test, quant_vars):
+    
+    #set k equal to length of list of features scaled
+    k = len(quant_vars)
 
     #set up a chain of if-conditionals to see what k (number of features scaled or len(quant_vars)) is, and then
     if k == 1:
