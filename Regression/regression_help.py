@@ -16,12 +16,15 @@ import mason_functions as mf
 #quant_vars is a list of eligible columns you wish to scale
 #Note: You must load your train, validate and test samples, and you must define quant_vars before running the scaler functions.
 
-### Scaler functions define 4 parameters, your train, validate and test sets as well as k, the number of features to scale (up to 8), and add appropriately scaled columms to your train, validate, and test dataframes.
+### Scaler functions define 4 parameters, your train, validate and test sets as well a list of columns to scale, and add appropriately scaled columms to your train, validate, and test dataframes.
 ## Author will write more code when called upon to scale more than 8 columns, because he couldn't figure out how to loop this mess.
 
 ### /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ ROBUST SCALER /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ ###
 
-def busta_scale(train, validate, test, quant_vars, k):
+def busta_scale(train, validate, test, quant_vars):
+
+    #define k, number of features to scale
+    k = len(quant_vars)
 
     #creation
     scaler = sklearn.preprocessing.RobustScaler()
@@ -156,7 +159,11 @@ def busta_scale(train, validate, test, quant_vars, k):
 
 
 
-def min_max_scale(train, validate, test, quant_vars, k):
+def min_max_scale(train, validate, test, quant_vars):
+
+    #set up number of features to scale
+    k = len(quant_vars)
+
 
     #creation
     scaler = sklearn.preprocessing.MinMaxScaler()
@@ -286,7 +293,10 @@ def min_max_scale(train, validate, test, quant_vars, k):
 
 
 
-def standard_scale(train, validate, test, quant_vars, k):
+def standard_scale(train, validate, test, quant_vars):
+
+    #set up k
+    k = len(quant_vars)
 
     #creation
     scaler = sklearn.preprocessing.StandardScaler()
@@ -418,7 +428,10 @@ def standard_scale(train, validate, test, quant_vars, k):
 
 
 ##### NORMAL QUANTILE SCALER
-def quantile_norm_scale(train, validate, test, quant_vars, k):
+def quantile_norm_scale(train, validate, test, quant_vars):
+
+    #set up number of features to scale
+    k = len(quant_vars)
 
     #creation
     scaler = sklearn.preprocessing.QuantileTransformer(output_distribution = 'normal')
@@ -544,7 +557,10 @@ def quantile_norm_scale(train, validate, test, quant_vars, k):
 
 
 ##### UNIFORM QUANTILE SCALER
-def quantile_uniform_scale(train, validate, test, quant_vars, k):
+def quantile_uniform_scale(train, validate, test, quant_vars):
+
+    #set up k
+    k = len(quant_vars)
 
     #creation
     scaler = sklearn.preprocessing.QuantileTransformer(output_distribution = 'uniform')
