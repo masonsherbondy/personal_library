@@ -165,7 +165,7 @@ def handle_nulls(df, cr, rr):
             #add rows to index
             ice_em.append(row_nulls.index[n])
     
-    #drop rows where the percentage of nulls is over 70%
+    #drop rows where the percentage of nulls is over the threshold
     df = df.drop(index = ice_em)
 
     #return the df with preferred drop parameters
