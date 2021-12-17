@@ -83,7 +83,7 @@ def handle_nulls(df, cr, rr):
     '''
     This function defines 3 parameters, the dataframe you want to calculate nulls for (df), the column ratio (cr) and the row ratio (rr),
     ratios that define the threshold of having too many nulls, and returns your dataframe with columns and rows dropped if they are above their respective threshold ratios.
-    Note: This function calculates the ratio of nulls missing for rows AFTER it drops the columns with null ratios above their threshold.
+    Note: This function calculates the ratio of nulls missing for rows AFTER it drops the columns with null ratios above the cr threshold.
     TL; DR: This function handles nulls for dataframes.
     '''
     #set an empty list
@@ -165,7 +165,7 @@ def handle_nulls(df, cr, rr):
             #add rows to index
             ice_em.append(row_nulls.index[n])
     
-    #drop rows where the percentage of nulls is over 70%
+    #drop rows where the percentage of nulls is over the threshold
     df = df.drop(index = ice_em)
 
     #return the df with preferred drop parameters
