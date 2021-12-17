@@ -14,7 +14,7 @@ import mason_functions as mf
 
 
 
-def calculate_nulls(df):
+def calculate_column_nulls(df):
     
     #set an empty list
     output = []
@@ -40,7 +40,39 @@ def calculate_nulls(df):
         output.append(r_dict)
         
     #design frame
-    null_summary = pd.DataFrame(output, index = df_columns)
+    column_nulls = pd.DataFrame(output, index = df_columns)
     
     #return the dataframe
-    return null_summary
+    return column_nulls
+
+
+    def calculate_row_nulls(df):
+    
+    #create an empty list
+    output = []
+    
+    #gather values in a series
+    row_nulls = df.isnull().sum(axis = 1)
+    
+    #commence 4 loop
+    for n in range(len(row_nulls)):
+        
+        #assign variable to nulls
+        missing = row_nulls[n]
+        
+        #assign variable to ratio
+        ratio = missing / len(df.columns)
+        
+        #assign a dictionary for your dataframe to accept
+        r_dict = {'nulls': missing,
+                  'null_ratio': round(ratio, 5),
+                  'null_percentage': f'{round(ratio * 100)}%'
+                 }
+        #add dictonaries to list
+        output.append(r_dict)
+        
+    #design frame
+    row_summary = pd.DataFrame(output, index = df.index)
+    
+    #return the dataframe
+    return row_summary
