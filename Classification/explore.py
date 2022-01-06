@@ -205,7 +205,7 @@ def plot_variable_pairs(df, quant_vars):
         plt.title(f'R-value: {round(corr10, 3)} | P-value: {round(p10, 4)} \n -----------------');
 
         #plot XI
-        sns.lmplot(x = quant_vars[0], y = quant_vars[05, data = df, line_kws = {'color': 'purple'})
+        sns.lmplot(x = quant_vars[0], y = quant_vars[5], data = df, line_kws = {'color': 'purple'})
         plt.title(f'R-value: {round(corr11, 3)} | P-value: {round(p11, 4)} \n -----------------');
 
         #plot XII
