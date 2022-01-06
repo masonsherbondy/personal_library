@@ -46,7 +46,7 @@ def calculate_column_nulls(df):
     return column_nulls
 
 
-    def calculate_row_nulls(df):
+def calculate_row_nulls(df):
     
     #create an empty list
     output = []
