@@ -16,65 +16,65 @@ import mason_functions as mf
 
 def calculate_column_nulls(df):
     
-    #set an empty list
+    # set an empty list
     output = []
     
-    #gather columns
+    # gather columns
     df_columns = df.columns.to_list()
     
-    #commence for loop
+    # commence for loop
     for column in df_columns:
         
-        #assign variable to number of rows that have null values
+        # assign variable to number of rows that have null values
         missing = df[column].isnull().sum()
         
-        #assign variable to ratio of rows with null values to overall rows in column
-        ratio = df[column].isnull().sum() / len(df)
+        # assign variable to ratio of rows with null values to overall rows in column
+        ratio = missing / len(df)
     
-        #assign a dictionary for your dataframe to accept
+        # assign a dictionary for your dataframe to accept
         r_dict = {'nulls': missing,
                   'null_ratio': round(ratio, 5),
                   'null_percentage': f'{round(ratio * 100, 2)}%'
                  }
-        #add dictonaries to list
+        # add dictonaries to list
         output.append(r_dict)
         
-    #design frame
+    # design frame
     column_nulls = pd.DataFrame(output, index = df_columns)
     
-    #return the dataframe
+    # return the dataframe
     return column_nulls
 
 
 def calculate_row_nulls(df):
     
-    #create an empty list
+    # create an empty list
     output = []
     
-    #gather values in a series
+    # gather values in a series
     nulls = df.isnull().sum(axis = 1)
     
-    #commence 4 loop
+    # commence 4 loop
     for n in range(len(nulls)):
         
-        #assign variable to nulls
+        # assign variable to nulls
         missing = nulls[n]
         
-        #assign variable to ratio
+        # assign variable to ratio
         ratio = missing / len(df.columns)
         
-        #assign a dictionary for your dataframe to accept
+        # assign a dictionary for your dataframe to accept
         r_dict = {'nulls': missing,
                   'null_ratio': round(ratio, 5),
                   'null_percentage': f'{round(ratio * 100)}%'
                  }
-        #add dictonaries to list
+        # add dictonaries to list
         output.append(r_dict)
         
-    #design frame
+    # design frame
     row_nulls = pd.DataFrame(output, index = df.index)
     
-    #return the dataframe
+    # return the dataframe
     return row_nulls
 
 
@@ -86,87 +86,87 @@ def handle_nulls(df, cr, rr):
     Note: This function calculates the ratio of nulls missing for rows AFTER it drops the columns with null ratios above the cr threshold.
     TL; DR: This function handles nulls for dataframes.
     '''
-    #set an empty list
+    # set an empty list
     output = []
     
-    #gather columns
+    # gather columns
     df_columns = df.columns.to_list()
     
-    #commence for loop
+    # commence for loop
     for column in df_columns:
         
-        #assign variable to number of rows that have null values
+        # assign variable to number of rows that have null values
         missing = df[column].isnull().sum()
         
-        #assign variable to ratio of rows with null values to overall rows in column
-        ratio = df[column].isnull().sum() / len(df)
+        # assign variable to ratio of rows with null values to overall rows in column
+        ratio = missing / len(df)
     
-        #assign a dictionary for your dataframe to accept
+        # assign a dictionary for your dataframe to accept
         r_dict = {'nulls': missing,
                   'null_ratio': round(ratio, 5),
                   'null_percentage': f'{round(ratio * 100, 2)}%'
                  }
-        #add dictonaries to list
+        # add dictonaries to list
         output.append(r_dict)
         
-    #design frame
+    # design frame
     column_nulls = pd.DataFrame(output, index = df_columns)
 
-    #set a list of columns to drop
+    # set a list of columns to drop
     null_and_void = []
     
-    #commence loop
+    # commence loop
     for n in range(len(column_nulls)):
         
-        #set up conditional to see if the ratio of nulls to total columns is over the entered column ratio (.cr)
+        # set up conditional to see if the ratio of nulls to total columns is over the entered column ratio (.cr)
         if column_nulls.iloc[n].null_ratio > cr:
             
-            #add columns over the threshold with nulls to the list of columns to drop
+            # add columns over the threshold with nulls to the list of columns to drop
             null_and_void.append(column_nulls.index[n])
     
-    #drop the columns
+    # drop the columns
     df = df.drop(columns = null_and_void)
 
-    #create another list
+    # create another list
     output = []
     
-    #gather values in a series
+    # gather values in a series
     nulls = df.isnull().sum(axis = 1)
     
-    #commence 4 loop
+    # commence 4 loop
     for n in range(len(nulls)):
         
-        #assign variable to nulls
+        # assign variable to nulls
         missing = nulls[n]
         
-        #assign variable to ratio
+        # assign variable to ratio
         ratio = missing / len(df.columns)
         
-        #assign a dictionary for your dataframe to accept
+        # assign a dictionary for your dataframe to accept
         r_dict = {'nulls': missing,
                   'null_ratio': round(ratio, 5),
                   'null_percentage': f'{round(ratio * 100)}%'
                  }
-        #add dictonaries to list
+        # add dictonaries to list
         output.append(r_dict)
         
-    #design frame
+    # design frame
     row_nulls = pd.DataFrame(output, index = df.index)
 
-    #set an empty index of rows to drop
+    # set an empty index of rows to drop
     ice_em = []
 
-    #commence loop
+    # commence loop
     for n in range(len(row_nulls)):
         
-        #set up conditional to see if the ratio of nulls to total columns is over the entered row ratio (.rr)
+        # set up conditional to see if the ratio of nulls to total columns is over the entered row ratio (.rr)
         if row_nulls.iloc[n].null_ratio > rr:
             
-            #add rows to index
+            # add rows to index
             ice_em.append(row_nulls.index[n])
     
-    #drop rows where the percentage of nulls is over the threshold
+    # drop rows where the percentage of nulls is over the threshold
     df = df.drop(index = ice_em)
 
-    #return the df with preferred drop parameters
+    # return the df with preferred drop parameters
     return df
