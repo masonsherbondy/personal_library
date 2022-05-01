@@ -1,12 +1,12 @@
 # This is the way
 import os
+from datetime import datetime, timedelta
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 import scipy.stats as stats
-from datetime import datetime, timedelta
+import seaborn as sns
 
 ## INDEX
 ### NULL FUNCTIONS
@@ -267,6 +267,46 @@ def one_split(df, target):
 ### 69696969696969696969696969696969696969696969696969696969696969 EXPLORE FUNCTIONS HERE 69696969696969696969696969696969696969696969696969696969696969 ###
 
 
+def get_values_and_counts(df):
+
+    '''
+    This function accepts a dataframe as input, and then returns a list of columns and unique values paired with the column, and it also returns a list of 
+    values and counts for each column.
+    '''
+
+    # print
+    print('Values and Counts')
+    print('-----------------')
+    # loop through columns to print number of unique values that each feature has and print out values and counts for each feature
+    for col in df.columns:
+        print(f'Column:')
+        print(f'{col}')
+        print(f'---')
+        print(f'Unique values:')
+        print(f'{df[col].nunique()}')
+        print(f'---')
+        print(f'Counts:')
+        print(df[col].value_counts(dropna = False).sort_values(ascending = False))
+        print(f'=================================================')
+        print(f'              ')
+
+
+def list_floats(df):
+
+    '''
+    This function accepts a dataframe as input, and returns a list of columns with the dtype 'float64'.
+    '''
+
+    # set an empty list to fill
+    quant_vars = []
+    # commence loop through columns
+    for column in df.columns:
+        # set if-conditional to see if the column is a float 
+        if df[column].dtype == 'float64':
+            # if it is, add this column to the list to fill
+            quant_vars.append(column)
+    
+    return quant_vars
 
 # distribution defines two parameters, both a dataframe and feature to accept, and plots a histogram with chart mods for clarity
 def distribution(df, feature):
@@ -283,8 +323,22 @@ def distribution(df, feature):
     f_feature = feature.replace('_', ' ').capitalize()    # re-format string for title
     plt.title(f'Distribution of {f_feature}', size = 13)    # title
     plt.ylabel('Frequency', size = 11)
+    plt.grid(False)
 
-def distributions_plot(df, quant_vars):
+def boxplot(df, feature):
+
+    '''
+    This function plots a boxplot from specified df for specified feature.
+    '''
+
+    title_string = feature.capitalize().replace('_', ' ')    # create title string
+    plt.title(f'Distribution of {title_string}')    # title
+    plt.boxplot(df[feature])   # display boxplot for column
+    plt.ylabel(feature)     # label y-axis
+    plt.grid(True)      # show gridlines
+    plt.tight_layout();    # clean
+
+def distributions_grid(df, quant_vars):
 
     '''
     This function creates a nice sized figure, enumerates the list of features passed into the function, creates a grid of subplots,
@@ -314,6 +368,40 @@ def distributions_plot(df, quant_vars):
             plt.grid(False)    # rid grid-lines
             plt.ylabel('Frequency')    # label y-axis
             plt.tight_layout();    # clean
+
+def boxplot_grid(df, quant_vars):
+
+    '''
+    This function creates a nice sized figure, enumerates the list of features passed into the function, creates a grid of subplots,
+    and then charts histograms for features in the list onto the subplots.
+    '''
+
+    plt.figure(figsize = (20, 11))    # create figure
+    n = len(quant_vars)
+    if n % 2 != 0:
+        for i, cat in enumerate(quant_vars):    # loop through enumerated list
+            plot_number = i + 1    # i starts at 0, but plot nos should start at 1
+            plt.subplot((n // 2) + 1, 2, plot_number)    # create subplot
+            title_string = cat.capitalize().replace('_', ' ')    # create title string
+            plt.title(title_string)    # title
+            plt.boxplot(df[cat])   # display boxplot for column
+            plt.ylabel(cat, size = 18)     # label y-axis
+            plt.yticks(size = 16)   # increase size on y-axis ticks
+            plt.grid(True)      # show gridlines
+            plt.tight_layout();    # clean
+
+    elif n % 2 == 0:
+        for i, cat in enumerate(quant_vars):    # loop through enumerated list
+            plot_number = i + 1    # i starts at 0, but plot nos should start at 1
+            plt.subplot(n / 2, 2, plot_number)    # create subplot
+            title_string = cat.capitalize().replace('_', ' ')    # create title string
+            plt.title(title_string)    # title
+            plt.boxplot(df[cat])   # display boxplot for column
+            plt.ylabel(cat, size = 18)     # label y-axis
+            plt.yticks(size = 16)   # increase size on y-axis ticks
+            plt.grid(True)      # show gridlines
+            plt.tight_layout();    # clean
+
 
 def fixed_dist_plot(df, quant_vars):
 
@@ -371,7 +459,8 @@ def select_kbest(X_train, y_train, k):
     This function defines 3 parameters, X_train (predictors), y_train (target variable) and k (number of features to spit), and returns a list of the best features my man.
     '''
 
-    from sklearn.feature_selection import SelectKBest, f_regression    # import feature selection tools
+    from sklearn.feature_selection import (  # import feature selection tools
+        SelectKBest, f_regression)
 
     f_select = SelectKBest(f_regression, k = k)    # create the selector\
     f_select.fit(X_train, y_train)    # fit the selector
@@ -386,8 +475,8 @@ def rfe(X_train, y_train, k):
     This function defines 3 parameters, X_train (features), y_train (target variable) and k (number of features to bop), and returns a list of the best boppits m8.
     '''
 
-    from sklearn.feature_selection import RFE    # import feature selection tools
-    from sklearn.linear_model import LinearRegression    # ditto
+    from sklearn.feature_selection import RFE  # import feature selection tools
+    from sklearn.linear_model import LinearRegression  # ditto
     
     lm = LinearRegression()    # crank it
     rfe = RFE(lm, k)    # pop it
