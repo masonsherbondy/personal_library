@@ -338,6 +338,23 @@ def boxplot(df, feature):
     plt.grid(True)      # show gridlines
     plt.tight_layout();    # clean
 
+def distribution_dos(df1, df2, feature):
+
+    '''
+    This function takes in 3 parameters, two dataframes (df1 & df2) that represent two independent sub-populations, and a feature to compare
+    their respective distributions of side by side. It then plots the distributions as planned. Currently outfitted for the Spaceship Titanic data set.
+    '''
+
+    plt.figure(figsize = (8, 5))     # create figure
+    plt.hist([df1[feature], df2[feature]],      # plot distributions side by side
+            label = ['Transported', 'Not-transported'],
+            color = ['indigo', 'mediumvioletred']
+            )
+    plt.legend()    # include legend
+    f_feature = feature.replace('_', ' ').capitalize()    # re-format string
+    plt.xlabel(f_feature, size = 13)     # x-axis label 
+    plt.ylabel('Frequency', size = 13);     # y-axis label
+
 def distributions_grid(df, quant_vars):
 
     '''
@@ -403,6 +420,20 @@ def boxplot_grid(df, quant_vars):
             plt.tight_layout();    # clean
 
 
+def compare_target_rates(df, target, x):
+
+    '''
+    This function accepts a dataframe, a target variable as a string and an x (categorical variable) to visually compare target rates across the different 
+    unique values of feature.
+    '''
+
+    target_string = target.capitalize()
+    sns.barplot(x = x, y = target, data = df, palette = 'Oranges')    # compare target rates across category x
+    plt.axhline(df[target].mean(), label = f'Overall {target} rate')    # show overall target rate
+    plt.legend()    # label horizontal plot line
+    plt.grid(False)    # good-bye, gridlines
+
+
 def fixed_dist_plot(df, quant_vars):
 
     '''
@@ -419,6 +450,14 @@ def fixed_dist_plot(df, quant_vars):
         df[cat].hist(color = 'indigo', edgecolor = 'black', bins = 20)    # display histogram for column
         plt.tight_layout();    # clean
 
+
+## CUSTOMIZED STATS RETURNS ##
+#### Chi Squared
+#### Independent Populations T-Test
+#### Levene's
+#### Bartlett's
+
+#### Chi Squared
 def return_chi2(observed):
 
     '''
@@ -443,6 +482,76 @@ def return_chi2(observed):
     print('-----------')
     print(f'chi^2 = {chi2:.4f}')
     print(f'p = {p:.4f}')
+
+#### Independent Populations T-Test
+def return_ttest_ind(subset1, subset2, continuous_feature, equal_var = True, alternative = 'two-sided', alpha = .05):
+
+    '''
+    This function accepts two subset dataframes, a continous feature to compare the mean of, a default argument of homoscedasticity, a default argument of 
+    a two-sided t-test, and a default alpha of .05. It returns the t-statistic as well as the p-value, and it prods the user to reject or fail to reject the 
+    null hypothesis.
+    '''
+
+    # run the test
+    t_stat, p = stats.ttest_ind(subset1[continuous_feature], subset2[continuous_feature], equal_var = equal_var, alternative = alternative)
+
+    # print the rest
+    print(f'T-Statistic: {t_stat}')
+    print(f'p-value: {p}')
+    print(f'------------')
+    if p < alpha:
+        print(f'Reject null hypothesis with {round((1 - p) * 100)}% confidence.')
+    else:
+        print('Fail to reject null hypothesis.')
+
+#### Levene's (when the distribution has departed from normal like not a bell curve yo)
+def return_levene(subset1, subset2, continuous_feature):
+
+    '''
+    This function accepts two subset dataframes and a feature to compare variances across, prints their variances, and prints the statistic and p-value and suggests 
+    whether the user should reject the null hypothesis that the variances are the same or to fail to reject this null hypothesis.
+    '''
+
+    # run the test
+    stat, p = stats.levene(subset1[continuous_feature], subset2[continuous_feature])
+    
+    # print variances
+    print(f'Variances:{subset1[continuous_feature].var(), subset2[continuous_feature].var()}')
+
+    # print suggested homoscedastic verdict
+    print('Test')
+    print('----')
+    print(f'Statistic: {stat}')
+    print(f'p-value: {p}')
+    if p < .05:
+        print(f'The low p-value of {round(p, 8)} suggests these variances are different.')
+    else:
+        print(f'The high p-value of {round(p, 8)} suggests these variances are the same.')
+
+#### Bartlett's (for normally distributed measures-- all the bells)
+def return_bartlett(subset1, subset2, continuous_feature):
+
+    '''
+    This function accepts two subset dataframes and a feature to compare variances across, prints their variances, and prints the statistic and p-value and suggests 
+    whether the user should reject the null hypothesis that the variances are the same or to fail to reject this null hypothesis.
+    '''
+
+    # run the test
+    stat, p = stats.bartlett(subset1[continuous_feature], subset2[continuous_feature])
+
+    # print variances
+    print(f'Variances:{subset1[continuous_feature].var(), subset2[continuous_feature].var()}')
+
+    # print suggested homoscedastic verdict
+    print('Test')
+    print('----')
+    print(f'Statistic: {stat}')
+    print(f'p-value: {p}')
+    if p < .05:
+        print(f'The low p-value of {round(p, 8)} suggests these variances are different.')
+    else:
+        print(f'The high p-value of {round(p, 8)} suggests these variances are the same.')
+
 
 # FEATURE SELECTION FUNCTIONS # 
 # # # Note: must define X_train and y_train prior to running feature selection functions
