@@ -458,7 +458,7 @@ def fixed_dist_plot(df, quant_vars):
 #### Bartlett's
 
 #### Chi Squared
-def return_chi2(observed):
+def return_chi2(observed, alpha = .05):
 
     '''
     This function defines one parameter, an observed cross-tabulation, runs the stats.chi2_contingency function and returns the test results in a readable format.
@@ -482,6 +482,11 @@ def return_chi2(observed):
     print('-----------')
     print(f'chi^2 = {chi2:.4f}')
     print(f'p = {p:.4f}')
+    print('-')
+    if p < alpha:
+        print('Reject null hypothesis.')
+    else:
+        print('Fail to reject null hypothesis.')
 
 #### Independent Populations T-Test
 def return_ttest_ind(subset1, subset2, continuous_feature, equal_var = True, alternative = 'two-sided', alpha = .05):
@@ -498,7 +503,7 @@ def return_ttest_ind(subset1, subset2, continuous_feature, equal_var = True, alt
     # print the rest
     print(f'T-Statistic: {t_stat}')
     print(f'p-value: {p}')
-    print(f'------------')
+    print(f'---')
     if p < alpha:
         print(f'Reject null hypothesis with {round((1 - p) * 100)}% confidence.')
     else:
