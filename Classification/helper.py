@@ -287,6 +287,10 @@ def get_values_and_counts(df):
         print(f'---')
         print(f'Counts:')
         print(df[col].value_counts(dropna = False).sort_values(ascending = False))
+        print('---')
+        print('Column data type:')
+        print(df[col].dtype)
+        print('---')
         print(f'=================================================')
         print(f'              ')
 
@@ -524,8 +528,8 @@ def return_levene(subset1, subset2, continuous_feature):
     print(f'Variances:{subset1[continuous_feature].var(), subset2[continuous_feature].var()}')
 
     # print suggested homoscedastic verdict
-    print('Test')
-    print('----')
+    print("Levene's Test")
+    print("-------------")
     print(f'Statistic: {stat}')
     print(f'p-value: {p}')
     if p < .05:
@@ -548,8 +552,8 @@ def return_bartlett(subset1, subset2, continuous_feature):
     print(f'Variances:{subset1[continuous_feature].var(), subset2[continuous_feature].var()}')
 
     # print suggested homoscedastic verdict
-    print('Test')
-    print('----')
+    print("Bartlett's Test")
+    print("---------------")
     print(f'Statistic: {stat}')
     print(f'p-value: {p}')
     if p < .05:
