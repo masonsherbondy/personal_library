@@ -496,13 +496,16 @@ def return_chi2(observed, alpha = .05):
         print('Fail to reject null hypothesis.')
 
 #### Independent Populations T-Test
-def return_ttest_ind(subset1, subset2, continuous_feature, equal_var = True, alternative = 'two-sided', alpha = .05):
+def return_ttest_ind(subset1, subset2, continuous_feature, equal_var = True, alternative = 'two-sided', confidence_level = .95):
 
     '''
     This function accepts two subset dataframes, a continous feature to compare the mean of, a default argument of homoscedasticity, a default argument of 
     a two-sided t-test, and a default alpha of .05. It returns the t-statistic as well as the p-value, and it prods the user to reject or fail to reject the 
     null hypothesis.
     '''
+
+    # set alpha
+    alpha = 1 - confidence_level
 
     # run the test
     t_stat, p = stats.ttest_ind(subset1[continuous_feature], subset2[continuous_feature], equal_var = equal_var, alternative = alternative)
@@ -518,14 +521,17 @@ def return_ttest_ind(subset1, subset2, continuous_feature, equal_var = True, alt
         print('Fail to reject null hypothesis.')
 
 #### One-Sample T-Test
-def return_ttest_1samp(sample_pop, main_pop, feature, axis = 0, alternative = 'two-sided', alpha = .05):
+def return_ttest_1samp(sample_pop, main_pop, feature, axis = 0, alternative = 'two-sided', confidence_level = .95):
     
     '''
     This function accepts two dataframes, a continuous feature to compare the mean of, a default argument of 0 for axis, a default argument of two-sided
     T-test for alternative and default alpha of .05. It runs a 1 sample t-test, returns the resulting t-statistic as well as the p-value and alpha and prods
     the user to reject or fail to reject the null hypothesis.
     '''
-
+    
+    # set alpha
+    alpha = 1 - confidence_level
+    
     # run the test
     t_stat, p = stats.ttest_1samp(a = sample_pop[feature], popmean = main_pop[feature].mean(), axis = axis, alternative = alternative)
 
