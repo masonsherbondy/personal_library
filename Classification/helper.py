@@ -460,6 +460,7 @@ def fixed_dist_plot(df, quant_vars):
 ## CUSTOMIZED STATS RETURNS ##
 #### Chi Squared
 #### Independent Populations T-Test
+#### One-Sample T-Test
 #### Levene's
 #### Bartlett's
 
@@ -509,6 +510,30 @@ def return_ttest_ind(subset1, subset2, continuous_feature, equal_var = True, alt
     # print the rest
     print(f'T-Statistic: {t_stat}')
     print(f'p-value: {p}')
+    print(f'Alpha: {alpha}')
+    print(f'---')
+    if p < alpha:
+        print(f'Reject null hypothesis with {round((1 - p) * 100)}% confidence.')
+    else:
+        print('Fail to reject null hypothesis.')
+
+#### One-Sample T-Test
+def return_ttest_1samp(sample_pop, main_pop, feature, axis = 0, alternative = 'two-sided', alpha = .05):
+    
+    '''
+    This function accepts two dataframes, a continuous feature to compare the mean of, a default argument of 0 for axis, a default argument of two-sided
+    T-test for alternative and default alpha of .05. It runs a 1 sample t-test, returns the resulting t-statistic as well as the p-value and alpha and prods
+    the user to reject or fail to reject the null hypothesis.
+    '''
+
+    # run the test
+    t_stat, p = stats.ttest_1samp(a = sample_pop[feature], popmean = main_pop[feature].mean(), axis = axis, alternative = alternative)
+
+    # print the rest
+    print(f'Population Mean: {main_pop[feature].mean()}')
+    print(f'T-Statistic: {t_stat}')
+    print(f'p-value: {p}')
+    print(f'Alpha: {alpha}')
     print(f'---')
     if p < alpha:
         print(f'Reject null hypothesis with {round((1 - p) * 100)}% confidence.')
