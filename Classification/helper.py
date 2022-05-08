@@ -325,8 +325,10 @@ def distribution(df, feature):
     plt.xticks(rotation = 45, size = 11)    # rotate x-axis label ticks 45 degrees, increase size to 11
     plt.yticks(size = 13)    # increasee y-axis label ticks to size 13
     f_feature = feature.replace('_', ' ').capitalize()    # re-format string for title
+    f_feature_2 = feature.replace('_', ' ')    # x-axis string
     plt.title(f'Distribution of {f_feature}', size = 13)    # title
     plt.ylabel('Frequency', size = 11)
+    plt.xlabel(f_feature_2)
     plt.grid(False)
 
 def boxplot(df, feature):
@@ -517,8 +519,8 @@ def return_ttest_ind(subset1, subset2, continuous_feature, equal_var = True, alt
 def return_levene(subset1, subset2, continuous_feature):
 
     '''
-    This function accepts two subset dataframes and a feature to compare variances across, prints their variances, and prints the statistic and p-value and suggests 
-    whether the user should reject the null hypothesis that the variances are the same or to fail to reject this null hypothesis.
+    This function accepts two subset dataframes and a feature to compare variances across, prints their variances, and prints the statistic and p-value from
+    Levene's test and suggests whether the user should reject the null hypothesis that the variances are the same or to fail to reject this null hypothesis.
     '''
 
     # run the test
@@ -541,8 +543,8 @@ def return_levene(subset1, subset2, continuous_feature):
 def return_bartlett(subset1, subset2, continuous_feature):
 
     '''
-    This function accepts two subset dataframes and a feature to compare variances across, prints their variances, and prints the statistic and p-value and suggests 
-    whether the user should reject the null hypothesis that the variances are the same or to fail to reject this null hypothesis.
+    This function accepts two subset dataframes and a feature to compare variances across, prints their variances, and prints the statistic and p-value from 
+    Bartlett's test and suggests whether the user should reject the null hypothesis that the variances are the same or to fail to reject this null hypothesis.
     '''
 
     # run the test
@@ -577,10 +579,9 @@ def select_kbest(X_train, y_train, k):
     This function defines 3 parameters, X_train (predictors), y_train (target variable) and k (number of features to spit), and returns a list of the best features my man.
     '''
 
-    from sklearn.feature_selection import (  # import feature selection tools
-        SelectKBest, f_regression)
+    from sklearn.feature_selection import SelectKBest, f_regression   # import feature selection tools
 
-    f_select = SelectKBest(f_regression, k = k)    # create the selector\
+    f_select = SelectKBest(f_regression, k = k)    # create the selector
     f_select.fit(X_train, y_train)    # fit the selector
     feat_mask = f_select.get_support()    # create a boolean mask to show if feature was selected
     best_features = X_train.iloc[:,feat_mask].columns.to_list()    # create a list of the best features
