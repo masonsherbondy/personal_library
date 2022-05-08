@@ -325,10 +325,10 @@ def distribution(df, feature):
     plt.xticks(rotation = 45, size = 11)    # rotate x-axis label ticks 45 degrees, increase size to 11
     plt.yticks(size = 13)    # increasee y-axis label ticks to size 13
     f_feature = feature.replace('_', ' ').capitalize()    # re-format string for title
-    f_feature_2 = feature.replace('_', ' ')    # x-axis string
+    x_string = feature.replace('_', ' ')    # x-axis string
     plt.title(f'Distribution of {f_feature}', size = 13)    # title
     plt.ylabel('Frequency', size = 11)
-    plt.xlabel(f_feature_2)
+    plt.xlabel(x_string)
     plt.grid(False)
 
 def boxplot(df, feature):
@@ -338,9 +338,10 @@ def boxplot(df, feature):
     '''
 
     title_string = feature.capitalize().replace('_', ' ')    # create title string
+    y_string = feature.replace('_', ' ')
     plt.title(f'Distribution of {title_string}')    # title
     plt.boxplot(df[feature])   # display boxplot for column
-    plt.ylabel(feature)     # label y-axis
+    plt.ylabel(y_string)     # label y-axis
     plt.grid(True)      # show gridlines
     plt.tight_layout();    # clean
 
@@ -406,9 +407,10 @@ def boxplot_grid(df, quant_vars):
             plot_number = i + 1    # i starts at 0, but plot nos should start at 1
             plt.subplot((n // 2) + 1, 2, plot_number)    # create subplot
             title_string = cat.capitalize().replace('_', ' ')    # create title string
+            cat_string = cat.replace('_', ' ')    # create y-label string
             plt.title(title_string)    # title
             plt.boxplot(df[cat])   # display boxplot for column
-            plt.ylabel(cat, size = 18)     # label y-axis
+            plt.ylabel(cat_string, size = 18)     # label y-axis
             plt.yticks(size = 16)   # increase size on y-axis ticks
             plt.grid(True)      # show gridlines
             plt.tight_layout();    # clean
@@ -418,6 +420,7 @@ def boxplot_grid(df, quant_vars):
             plot_number = i + 1    # i starts at 0, but plot nos should start at 1
             plt.subplot(n / 2, 2, plot_number)    # create subplot
             title_string = cat.capitalize().replace('_', ' ')    # create title string
+            cat_string = cat.replace('_', ' ')    # create y-label string
             plt.title(title_string)    # title
             plt.boxplot(df[cat])   # display boxplot for column
             plt.ylabel(cat, size = 18)     # label y-axis
