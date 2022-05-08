@@ -6,6 +6,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+### Shout out to Ravinder Singh for laying the framework on this one
+
 # INDEX #
 ## ROBUST SCALER ##
 ## MIN-MAX SCALER ##
