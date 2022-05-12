@@ -28,9 +28,9 @@ def calculate_column_nulls(df):
     output = []    # set an empty list
     df_columns = df.columns.to_list()   # gather columns
 
-    for column in df_columns:   # commence for-loop
-        missing = df[column].isnull().sum()    # assign variable to number of rows that have null values
-        ratio = missing / len(df)   # assign variable to ratio of rows with null values to overall rows in column
+    for column in df_columns:   # commence for-loop through columns
+        missing = df[column].isnull().sum()    # assign variable to sum of rows that have a null value
+        ratio = missing / len(df)   # assign variable to ratio of null rows to overall rows (dataframe length)
         # assign a dictionary for your dataframe to accept       
         r_dict = {'nulls': missing,
                   'null_ratio': round(ratio, 5),
@@ -38,8 +38,8 @@ def calculate_column_nulls(df):
                  }
         output.append(r_dict)   # add dictonaries to list
 
-    column_nulls = pd.DataFrame(output, index = df_columns)    # design frame
-    column_nulls = column_nulls.sort_values('nulls', ascending = False)    # sort
+    column_nulls = pd.DataFrame(output, index = df_columns)    # design frame from list of dictionaries; use dataframe columns as an index
+    column_nulls = column_nulls.sort_values('nulls', ascending = False)    # sort values in descending order
 
     return column_nulls
 
@@ -51,10 +51,10 @@ def calculate_row_nulls(df):
     '''   
     
     output = []    # create an empty list
-    nulls = df.isnull().sum(axis = 1)   # gather values in a series
-    for n in range(len(nulls)):    # commence 4 loop
-        missing = nulls[n]     # assign variable to nulls
-        ratio = missing / len(df.columns)   # assign variable to ratio
+    nulls = df.isnull().sum(axis = 1)   # gather null sums (row-wise) in a series
+    for n in range(len(nulls)):    # commence 4 loop thru series of null sums
+        missing = nulls[n]     # assign variable to null sum
+        ratio = missing / len(df.columns)   # assign variable to ratio of nulls to total column length
         # assign a dictionary for your dataframe to accept
         r_dict = {'nulls': missing,
                   'null_ratio': round(ratio, 5),
@@ -62,8 +62,8 @@ def calculate_row_nulls(df):
                  }
         output.append(r_dict)   # add dictonaries to list
 
-    row_nulls = pd.DataFrame(output, index = df.index)    # design frame
-    row_nulls = row_nulls.sort_values('nulls', ascending = False)   # sort
+    row_nulls = pd.DataFrame(output, index = df.index)    # design frame from list; use original index as index
+    row_nulls = row_nulls.sort_values('nulls', ascending = False)   # sort values in descending order
 
     return row_nulls
 
@@ -79,9 +79,9 @@ def handle_nulls(df, cr, rr):
     ## DROP COLUMN NULLS ##
     output = []    # set an empty list    
     df_columns = df.columns.to_list()    # gather columns
-    for column in df_columns:    # commence for-loop
-        missing = df[column].isnull().sum()    # assign variable to number of rows that have null values
-        ratio = missing / len(df)    # assign variable to ratio of rows with null values to overall rows in column
+    for column in df_columns:    # commence for-loop through columns
+        missing = df[column].isnull().sum()    # assign variable to sum of rows that have a null value
+        ratio = missing / len(df)    # assign variable to ratio of null rows to overall rows
         # assign a dictionary for your dataframe to accept
         r_dict = {'nulls': missing,
                   'null_ratio': round(ratio, 5),
@@ -89,22 +89,22 @@ def handle_nulls(df, cr, rr):
                  }
         output.append(r_dict)    # add dictonaries to list
         
-    column_nulls = pd.DataFrame(output, index = df_columns)    # design frame
+    column_nulls = pd.DataFrame(output, index = df_columns)    # design frame; set index to original df columns
     null_and_void = []    # set a list of columns to drop
     
-    for n in range(len(column_nulls)):    # commence 4-loop
-        if column_nulls.iloc[n].null_ratio > cr:     # set up conditional to see if the ratio of nulls to total columns is over the entered column ratio (.cr)
-            null_and_void.append(column_nulls.index[n])    # add columns over the threshold with nulls to the list of columns to drop
+    for n in range(len(column_nulls)):    # commence 4-loop through list of columns to drop
+        if column_nulls.iloc[n].null_ratio > cr:     # set up conditional to see if the ratio of null rows to total rows is over the entered column ratio (.cr)
+            null_and_void.append(column_nulls.index[n])    # add columns with nulls over the threshold to the list of columns to drop
     
     df = df.drop(columns = null_and_void)    # drop the columns
 
     ## DROP ROW NULLS ##
     output = []    # create another list
-    nulls = df.isnull().sum(axis = 1)    # gather values in a series
+    nulls = df.isnull().sum(axis = 1)    # gather null sums (row-wise) in a series
     
-    for n in range(len(nulls)):    # commence 4 loop
-        missing = nulls[n]    # assign variable to nulls
-        ratio = missing / len(df.columns)    # assign variable to ratio
+    for n in range(len(nulls)):    # commence 4 loop through null sums
+        missing = nulls[n]    # assign variable to null sum
+        ratio = missing / len(df.columns)    # assign variable to ratio of null sum to total column length
         # assign a dictionary for your dataframe to accept
         r_dict = {'nulls': missing,
                   'null_ratio': round(ratio, 5),
@@ -112,9 +112,9 @@ def handle_nulls(df, cr, rr):
                  }
         output.append(r_dict)    # add dictonaries to list
     
-    row_nulls = pd.DataFrame(output, index = df.index)    # design frame
+    row_nulls = pd.DataFrame(output, index = df.index)    # design frame; set index to dataframe index
     ice_em = []    # set an empty index of rows to drop
-    for n in range(len(row_nulls)):    # commence loop
+    for n in range(len(row_nulls)):    # commence loop through null data
         if row_nulls.iloc[n].null_ratio > rr:    # set up conditional to see if the ratio of nulls to total columns is over the entered row ratio (.rr)
             ice_em.append(row_nulls.index[n])    # add rows to index
 
@@ -230,13 +230,13 @@ def get_above_bounds(df, quant_vars, multiplier = 1.5):
 
 # reference for splitting data (classification method)
 # split_data_strat defines two parameters, a clean dataframe (df) and my target variable (target), and returns my train, validate and test sets with the target variable stratified amongst them, whatever that means.
-def class_split_data(df, target):
+def class_split_data(df, target, test_size = .2, validate_size = .3, random_state = 421):
 
     '''
     Takes in a dataset and returns the train, validate, and test subset dataframes.
-    Dataframe size for my test set is .2 or 20% of the original data. 
-    Validate data is 30% of my training set, which is 24% of the original data. 
-    Training data is 70% of my original training set, which is 56% total of the original data.
+    Default dataframe size for my test set is .2 or 20% of the original data. 
+    Validate data is default 30% of my training set, which is 24% of the original data. 
+    Training data is default 70% of my original training set, which is 56% total of the original data.
     Stratifies by the specified target variable.
     '''
 
@@ -244,14 +244,14 @@ def class_split_data(df, target):
     from sklearn.model_selection import train_test_split
 
     # get my training and test data sets defined; stratify my target variable
-    train, test = train_test_split(df, test_size = .2, random_state = 421, stratify = df[target])
+    train, test = train_test_split(df, test_size = test_size, random_state = random_state, stratify = df[target])
     # get my validate set from the training set; stratify my target variable again
-    train, validate = train_test_split(train, test_size = .3, random_state = 421, stratify = train[target])
+    train, validate = train_test_split(train, test_size = validate_size, random_state = random_state, stratify = train[target])
     
     # return the 3 dataframes
     return train, validate, test
 
-def one_split(df, target):
+def class_one_split(df, target):
 
     # import splitter
     from sklearn.model_selection import train_test_split
@@ -503,7 +503,7 @@ def return_ttest_ind(subset1, subset2, continuous_feature, equal_var = True, alt
 
     '''
     This function accepts two subset dataframes, a continous feature to compare the mean of, a default argument of homoscedasticity, a default argument of 
-    a two-sided t-test, and a default alpha of .05. It returns the t-statistic as well as the p-value, and it prods the user to reject or fail to reject the 
+    a two-sided t-test, and a default confidence level of 95%. It returns the t-statistic as well as the p-value, and it prods the user to reject or fail to reject the 
     null hypothesis.
     '''
 
@@ -528,7 +528,7 @@ def return_ttest_1samp(sample_pop, main_pop, feature, axis = 0, alternative = 't
     
     '''
     This function accepts two dataframes, a continuous feature to compare the mean of, a default argument of 0 for axis, a default argument of two-sided
-    T-test for alternative and default alpha of .05. It runs a 1 sample t-test, returns the resulting t-statistic as well as the p-value and alpha and prods
+    T-test for alternative and default confidence level of 95%. It runs a 1 sample t-test, returns the resulting t-statistic as well as the p-value and alpha and prods
     the user to reject or fail to reject the null hypothesis.
     '''
     
