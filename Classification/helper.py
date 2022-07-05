@@ -266,38 +266,70 @@ def class_one_split(df, target):
 
 ### 69696969696969696969696969696969696969696969696969696969696969 EXPLORE FUNCTIONS HERE 69696969696969696969696969696969696969696969696969696969696969 ###
 
+#
+#def get_values_and_counts(df):
+#
+    #'''
+    #This function accepts a dataframe as input, and for each column in the dataframe, it returns the column name, the number of unique values, the values and counts
+    #and the column data type.
+    #'''
+#
+    ## print
+    #print('Values and Counts')
+    #print('=================')
+    #print('')
+    ## loop through columns to print number of unique values that each feature has and print out values and counts for each feature
+    #for col in df.columns:
+        #print(f'Column:')
+        #print(f'-------')
+        #print(f'{col}')
+        #print('')
+        #print(f'# of Unique values:')
+        #print(f'-------------------')
+        #print(f'{df[col].nunique()}')
+        #print('')
+        #print(f'Values & Counts:')
+        #print(f'----------------')
+        #print(df[col].value_counts(dropna = False).sort_values(ascending = False))
+        #print('')
+        #print('Column data type:')
+        #print('-----------------')
+        #print(df[col].dtype)
+        #print(f'=================================================')
+        #print(f'              ')
 
-def get_values_and_counts(df):
+def get_column_values(df):
 
     '''
-    This function accepts a dataframe as input, and for each column in the dataframe, it returns the column name, the number of unique values, the values and counts
-    and the column data type.
+    This function accepts a dataframe as input, and then returns a list of columns and unique values paired with the column, and it also returns a list of 
+    values and counts for each column.
     '''
-
+    
+    # assign a variable to a list of the columns
+    columns = df.columns.to_list()
     # print
     print('Values and Counts')
     print('=================')
     print('')
     # loop through columns to print number of unique values that each feature has and print out values and counts for each feature
-    for col in df.columns:
-        print(f'Column:')
+    for n in range(len(columns)):
+        print(f'Column {n + 1}:')
         print(f'-------')
-        print(f'{col}')
+        print(f'{columns[n]}')
         print('')
         print(f'# of Unique values:')
         print(f'-------------------')
-        print(f'{df[col].nunique()}')
+        print(f'{df[columns[n]].nunique()}')
         print('')
         print(f'Values & Counts:')
         print(f'----------------')
-        print(df[col].value_counts(dropna = False).sort_values(ascending = False))
+        print(df[columns[n]].value_counts(dropna = False).sort_values(ascending = False))
         print('')
         print('Column data type:')
         print('-----------------')
-        print(df[col].dtype)
+        print(df[columns[n]].dtype)
         print(f'=================================================')
         print(f'              ')
-
 
 def list_floats(df):
 
