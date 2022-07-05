@@ -329,7 +329,7 @@ def get_column_values(df):
         print('-----------------')
         print(df[columns[n]].dtype)
         print(f'=================================================')
-        print(f'              ')
+        print(f' ')
 
 def list_floats(df):
 
