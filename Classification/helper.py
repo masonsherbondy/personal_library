@@ -298,38 +298,41 @@ def class_one_split(df, target):
         #print(f'=================================================')
         #print(f'              ')
 
-def get_column_values(df):
+def get_columns(df, max_columns = None, max_rows = 117):
 
     '''
     This function accepts a dataframe as input, and then returns a list of columns and unique values paired with the column, and it also returns a list of 
     values and counts for each column.
     '''
     
+    # import pandas 
+    import pandas as pd
+    # allow user to set display options
+    pd.set_option('display.max_columns', max_columns)
+    pd.set_option('display.max_rows', max_rows)
+    
     # assign a variable to a list of the columns
     columns = df.columns.to_list()
     # print
-    print('Values and Counts')
+    print('Column Values')
     print('=================')
     print('')
     # loop through columns to print number of unique values that each feature has and print out values and counts for each feature
     for n in range(len(columns)):
-        print(f'Column {n + 1}:')
+        print(f'Column {n + 1}: {columns[n]}')
         print(f'-------')
-        print(f'{columns[n]}')
-        print('')
-        print(f'# of Unique values:')
-        print(f'-------------------')
-        print(f'{df[columns[n]].nunique()}')
-        print('')
+        print(f'')
+        print(f'# of Unique values: {df[columns[n]].nunique()}')
+        print(f'-----------------')
+        print(f'')
         print(f'Values & Counts:')
-        print(f'----------------')
+        print(f'--------------')
         print(df[columns[n]].value_counts(dropna = False).sort_values(ascending = False))
-        print('')
-        print('Column data type:')
-        print('-----------------')
-        print(df[columns[n]].dtype)
+        print(f'')
+        print(f'Column data type: {df[columns[n]].dtype}')
+        print(f'---------------')
         print(f'=================================================')
-        print(f' ')
+        print(f'')
 
 def list_floats(df):
 
